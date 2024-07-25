@@ -1,5 +1,13 @@
-import "@/styles/globals.css";
+import '../styles/App.css';
+import Layout from './Layout.js';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }) {
+    return (
+        <Layout detailData={pageProps.detailData} contactData={pageProps.contactData} error={pageProps.error}>
+            <Component {...pageProps} />
+        </Layout>
+    );
 }
+
+export default MyApp;
+
