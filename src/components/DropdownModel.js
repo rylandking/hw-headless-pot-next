@@ -1,6 +1,4 @@
-import React from 'react';
 import '../utils/css/dropdownmodel.css';
-//import { Link } from 'react-router-dom';
 import Link from 'next/link';
 function DropdownModel({ signedin,username,setSignedIn }) {
 

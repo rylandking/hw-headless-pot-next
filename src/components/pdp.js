@@ -8,8 +8,11 @@ import Success from '../utils/icons/success.svg';
 import '../utils/css/pdp.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import useContentStackApi from '../customHook/ContentStackApi';
 
-const Pdp = () => {
+export default function Pdp() {
+
+//const Pdp = () => {
   const router = useRouter();
   const { id } = router.query;
   const [activeTab, setActiveTab] = useState('Overview');
@@ -225,4 +228,4 @@ const Pdp = () => {
   );
 };
 
-export default Pdp;
+//export default Pdp;

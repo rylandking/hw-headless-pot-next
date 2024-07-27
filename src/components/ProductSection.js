@@ -3,7 +3,6 @@ import CaratDown from '../utils/icons/caratdown.svg';
 import CaratUp from '../utils/icons/caratup.svg';
 import '../utils/css/ProductSection.css';
 import Image from 'next/image';
-//import pdp from './pdp.js';
 import Link from 'next/link';
 
 const ProductSection = () => {

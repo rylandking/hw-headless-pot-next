@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import "../utils/css/SearchBarW.css";
 import Close from  '../utils/icons/close.svg';
 import Magnify from '../utils/icons/magify.svg';
-//import { Link } from 'react-router-dom';
 import Link from 'next/link';
 import Image from 'next/image';
 

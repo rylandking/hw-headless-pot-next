@@ -1,4 +1,4 @@
-import Pdp from '../../components/pdp'; // Adjust the import path as needed
+import Pdp from '../../components/pdp.js'; // Adjust the import path as needed
 
 const ProductPage = () => {
   return <Pdp />;

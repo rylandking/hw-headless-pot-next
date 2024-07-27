@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import Home from '../utils/icons/home.svg';
 import CaratRight from '../utils/icons/caratright.svg';
-//import { Link } from 'react-router-dom';
 import Link from 'next/link';
 import Image from 'next/image';
 import '../utils/css/Breadcrumb.css';
-//import { Link } from 'react-router-dom';
+
 
 const Breadcrumb = () => {
 
@@ -15,7 +14,7 @@ const Breadcrumb = () => {
           <li className='breadcrumb-list'>
               <ul>
               <Link href="/" className='homepage-link'><Image src={Home} alt="Homepage icon" className='home-icon'/></Link>
-              <img src={CaratRight} alt="Right carat" className='carat-right'/>
+              <Image src={CaratRight} alt="Right carat" className='carat-right'/>
               </ul>
               <ul>
                   <p className='top-text'>Search Results</p>

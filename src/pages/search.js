@@ -1,9 +1,7 @@
-import Layout from '../pages/Layout';
-import '../styles/App.css';
-import MyApp from './_app.js';
+
+import '../utils/css/App.css';
 import Search_Page from '../pages/Search-page'; 
 import axios from 'axios';
-import Home from './Home.js';
 import { detailsApi, contactApi } from '../utils/ApiList/axiosapi';
 
 export default function SearchPage({ detailData, contactData, error }) {

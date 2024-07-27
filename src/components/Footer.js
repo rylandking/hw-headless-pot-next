@@ -1,7 +1,5 @@
-//import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import '../styles/App.css';
+import '../utils/css/App.css';
 import linkedin from '../utils/icons/linkedin.svg';
 import Facebook from '../utils/icons/facebook.svg';
 import Twitter from '../utils/icons/twitter.svg';
