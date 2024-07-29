@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CaratDown from '../utils/icons/caratdown.svg';
 import CaratUp from '../utils/icons/caratup.svg';
-import '../utils/css/ProductSection.css';
+//import '../utils/css/ProductSection.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
