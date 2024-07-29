@@ -3,7 +3,7 @@ import Home from '../utils/icons/home.svg';
 import CaratRight from '../utils/icons/caratright.svg';
 import Link from 'next/link';
 import Image from 'next/image';
-import '../utils/css/Breadcrumb.css';
+//import '../utils/css/Breadcrumb.css';
 
 
 const Breadcrumb = () => {
