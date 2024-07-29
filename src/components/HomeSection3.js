@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import "../utils/css/home.css";
+//import "../utils/css/home.css";
 
 export default function HomeSection3() {
   return (
