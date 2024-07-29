@@ -3,8 +3,7 @@ import axios from 'axios';
 import Token from '../utils/ApiList/Token.js';
 import {detailsApi} from '../utils/ApiList/axiosapi.js'
 
-
-const [detailData, setDetailData] = useState([]);
+//const [detailData, setDetailData] = useState([]);
 
 console.log(Token,detailsApi)
 useEffect(() => {
