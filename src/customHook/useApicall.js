@@ -6,7 +6,7 @@ import {detailsApi} from '../utils/ApiList/axiosapi.js'
 //const [detailData, setDetailData] = useState([]);
 
 console.log(Token,detailsApi)
-useEffect(() => {
+/*useEffect(() => {
   const fetchData = async () => {
     try {
       const response = await axios.get( `${detailsApi}`,
@@ -25,3 +25,4 @@ useEffect(() => {
 
   fetchData();
 }, []);
+*/
