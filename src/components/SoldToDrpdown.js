@@ -1,5 +1,5 @@
 import React from "react";
-import "../utils/css/soldToDropdown.css";
+//import "../utils/css/soldToDropdown.css";
 //import Testindrop from "./Testindrop";
 import Close from "../utils/icons/close.svg";
 import Image from 'next/image';
