@@ -1,6 +1,6 @@
 
 import React from "react";
-import './Testingdrop.css'  ;
+//import './Testingdrop.css';
 
 export default function SoldToDrpdown(soldData) {
     return (
