@@ -1,5 +1,5 @@
 
-import '../utils/css/App.css';
+//import '../utils/css/App.css';
 import Search_Page from '../pages/Search-page'; 
 import axios from 'axios';
 import { detailsApi, contactApi } from '../utils/ApiList/axiosapi';
