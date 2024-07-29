@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../utils/css/SearchBarW.css";
+//import "../utils/css/SearchBarW.css";
 import Close from  '../utils/icons/close.svg';
 import Magnify from '../utils/icons/magify.svg';
 import Link from 'next/link';
