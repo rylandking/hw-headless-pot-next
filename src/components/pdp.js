@@ -5,7 +5,7 @@ import Save from '../utils/icons/save.svg';
 import Minus from '../utils/icons/minus.svg';
 import Plus from '../utils/icons/plus.svg';
 import Success from '../utils/icons/success.svg';
-import '../utils/css/pdp.css';
+//import '../utils/css/pdp.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import useContentStackApi from '../customHook/ContentStackApi';
