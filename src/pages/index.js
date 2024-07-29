@@ -1,5 +1,5 @@
 
-import '../utils/css/App.css';
+//import '../utils/css/App.css';
 import axios from 'axios';
 import {contactApi, detailsApi} from '../utils/ApiList/axiosapi.js'
 //import {Route, RouterProvider, createRoutesFromElements,createBrowserRouter} from 'react-router-dom'
