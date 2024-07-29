@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../utils/css/NotFound.css';
+//import '../utils/css/NotFound.css';
 
 
 const NotFound = () => {
