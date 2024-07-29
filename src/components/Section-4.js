@@ -1,6 +1,6 @@
 import React from "react";
 import useContentStackApi from "../customHook/ContentStackApi"; // Adjust the path accordingly
-import "../utils/css/home.css";
+//import "../utils/css/home.css";
 
 const ImageGrid = () => {
     // Fetch data using the custom hook
