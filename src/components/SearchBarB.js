@@ -3,7 +3,7 @@ import Image from 'next/image';
 import CaratDown from '../utils/icons/caratdown.svg';
 import CaratUp from '../utils/icons/caratup.svg';
 import Magify from '../utils/icons/magify.svg';
-import '../utils/css/SearchBarB.css';
+//import '../utils/css/SearchBarB.css';
 
 const SearchBar2 = () => {
     const [searchTerm, setSearchTerm] = useState('');
