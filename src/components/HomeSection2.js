@@ -1,6 +1,6 @@
 import React from 'react';
 import useContentStackApi from '../customHook/ContentStackApi'; // Adjust the path accordingly
-import "../utils/css/home.css";
+//import "../utils/css/home.css";
 
 export default function HomeSection2() {
     const contentData = useContentStackApi();
