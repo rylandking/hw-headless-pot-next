@@ -160,7 +160,7 @@ export default function Pdp() {
 
                     <div className='fourth-level'>
                       <div className='amount-section'>
-                        <p className='amount-available-text'><img src={Success} alt="Honeywell success icon"
+                        <p className='amount-available-text'><Image src={Success} alt="Honeywell success icon"
                                                                   className='success-icon'/>5 Available on 08-JUL-2024</p>
                       </div>
                       <p className='product-availability-text'>Product availabilty is estimated on current stock level,
