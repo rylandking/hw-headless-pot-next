@@ -137,7 +137,7 @@ export default function Pdp() {
                   <div className='product-overview'>
                     <p className='product-desc-title'>Product Description</p>
                     <p className='product-desc-info'>{description}</p>
-                    <p className='feats-and-benefits-title'>Features & Ben*</p>
+                   
                     <div className='second-level'>
                       <p>List Price</p>
                       <p>Your Price</p>
