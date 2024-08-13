@@ -5,225 +5,171 @@ import Image from 'next/image';
 import Save from '../utils/icons/save.svg';
 
 const Pdp = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const [activeTab, setActiveTab] = useState('Overview');
-  const [quantity, setQuantity] = useState(1);
-  const [product, setProduct] = useState(null);
+  const [activeTab, setActiveTab] = useState("Overview");
+  const [userLoggedIn, setUserLoggedIn] = useState(null);
 
   useEffect(() => {
-    if (id) {
-      // Replace with your data fetching logic
-      const fetchProduct = async () => {
-        const fetchedProduct = {
-          id,
-          name: 'BEAMHK',
-          description: 'Heater Kit for Beam detector',
-          listPrice: 71.43,
-          yourPrice: 32.50,
-          quantityAvailable: 5,
-          imageUrls: [
-            'https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes',
-            'https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes'
-          ]
-        };
-        setProduct(fetchedProduct);
-      };
-      fetchProduct();
-    }
-  }, [id]);
+    // This code runs only on the client side
+    const loggedInStatus = localStorage.getItem("userLoggedIn");
+    setUserLoggedIn(loggedInStatus);
+  }, []); // Empty dependency array ensures this runs once on component mount
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
-  const handleDecrease = () => {
-    setQuantity((prevQuantity) => Math.max(prevQuantity - 1, 1));
-  };
-
-  const handleIncrease = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
-  };
-
-  if (!product) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div>
-
-    <p className="top-header">{product.name}</p>
-    <h1 className='small-desc-info'>{product.description}</h1>
+    <div className="main-content">
+      <div className="product-title">
         <div className="products-title-info">
-        <p className='detail-desc-info'>Heating kits for use to prevent condensation with the BEAM1224 conventional beam smoke detectors. They lessen the likelihood of condensation by maintaining the unit at a temperature that is slightly higher than the surrounding air.</p>
+          <b className="">Accessories</b>
+          <h1 className="">BEAM1224 Heating Kit</h1>
+          <p className="">
+            Heating kits for use to prevent condensation with the BEAM1224
+            conventional beam smoke detectors. They lessen the likelihood of
+            condensation by maintaining the unit at a temperature that is
+            slightly higher than the surrounding air.
+          </p>
         </div>
-      
+      </div>
 
       <div className="product-info-side">
         <nav className="product-navbar">
           <ul className="product-nav-items">
             <li
               className={activeTab === "Overview" ? "active" : ""}
-              onClick={() => handleTabClick("Overview")}>Overview</li>
-              <li
-              className={activeTab === "Specifications" ? "active" : ""}
-              onClick={() => handleTabClick("Specifications")}>Specifications</li>
+              onClick={() => handleTabClick("Overview")}
+            >
+              Overview
+            </li>
             <li
-              className={activeTab === "Resources" ? "active" : ""}
-              onClick={() => handleTabClick("Resources")}>Resources</li>
+              className={activeTab === "Specifications" ? "active" : ""}
+              onClick={() => handleTabClick("Specifications")}
+            >
+              Resources
+            </li>
             <li
               className={activeTab === "SKU" ? "active" : ""}
-              onClick={() => handleTabClick("SKU")}>SKU</li>
+              onClick={() => handleTabClick("SKU")}
+            >
+              SKU
+            </li>
           </ul>
         </nav>
 
         <div className="product-content">
           {activeTab === "Overview" && (
-            <div className='product-overview'>
-                <div className='middle-beamhk'>
+            <>
               <div className="image-side">
-                {product.imageUrls && (
-                  <div className="images">
-                    <img
-                      src={product.imageUrls[1]}
-                      className="beamhk-image-2"
-                      alt="Product Image"
-                    />
-                    <img
-                      src={product.imageUrls[1]}
-                      alt="Product Image"
-                      className="beamhk-image-1"
-                    />
+                <div className="images">
+                  <img
+                    src="https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes"
+                    alt="BEAMHK Heating Kit"
+                    className="beamhk-image-1"
+                  />
+                  <div className="beamhk-image">
+                    {[...Array(4)].map((_, i) => (
+                      <img
+                        key={i}
+                        src="https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes"
+                        className="beamhk-image-2"
+                        alt="BEAMHK Heating Kit"
+                      />
+                    ))}
                   </div>
-                )}
-
-<div className='add-to-cart-section'>
-            <div className='save-icon-box'>
-                <Image src={Save} alt="Save icon" className='save-icon'/>
-            </div>
-            <div className='add-to-cart-button'>
-              <p className='add-to-cart-link'>Save this Page as PDF</p>
-            </div></div>
+                  <div>
+                    <button className="savethispage">SAVE THIS PAGE AS PDF</button>
+                  </div>
+                </div>
               </div>
 
-              <div className="product-information">
+              <div className="product-overview-pdp">
                 <div className="button-section">
                   <button>CONTACT US</button>
-                  <button>BUY ONLINE</button>
+                  <button onClick={() => handleTabClick("SKU")}>BUY ONLINE</button>
                   <button>FIND A PARTNER</button>
-                  
                 </div>
                 <p className="product-desc-info">
-                Heating kits for use to prevent condensation with the BEAM1224 conventional beam smoke detectors. They lessen the likelihood of condensation by maintaining the unit at a temperature that is slightly higher than the surrounding air.
-
-
+                  Heating kits for use to prevent condensation with the BEAM1224
+                  conventional beam smoke detectors. They lessen the likelihood
+                  of condensation by maintaining the unit at a temperature that
+                  is slightly higher than the surrounding air.
                 </p>
-                <b className='feats-and-benefits-title'>Features & Benefits:</b>
-                
-                  <li>Heater Kit for Beam detector</li>
-                  <li>Prevents condensation with the BEAM1224 conventional beam smoke detectors</li>
-                  
-                  <b className='cert-title'>Certifications:</b>
-                  <li>UL</li>
-                  <li>CSFM</li>
+                <b> Features & Benefits:</b>
+                <p>To prevent condensation on the optical surface</p>
               </div>
-            </div></div>
+            </>
           )}
+
           {activeTab === "Specifications" && (
             <div className="product-specifications">
-               <li>Heater Kit for Beam detector</li>
-               <li>Prevents condensation with the BEAM1224 conventional beam smoke detectors</li>
-              
-               
+              <table className="resources-table">
+                <thead>
+                  <tr className="resources-table-rows">
+                    <td className="resources-table-headers">NAME</td>
+                    <td className="resources-table-headers">DATE</td>
+                    <td className="resources-table-headers">SIZE</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>BEAMHK Heating Kit-Installation Manual</td>
+                    <td>5/10/2023</td>
+                    <td>591.04 KB</td>
+                  </tr>
+                  <tr>
+                    <td>OSI-R-SS Datasheet</td>
+                    <td>4/2/2022</td>
+                    <td>258.57 KB</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           )}
-          {activeTab === 'Resources' && (
-              <div className='product-resources'>
-                <table className='resources-table'>
-                  <tbody>
-                    <tr className='resources-table-rows'>
-                      <td className='resources-table-headers'>Name</td>
-                      <td className='resources-table-headers'>Date</td>
-                      <td className='resources-table-headers'>Size</td>
-                    </tr>
-                    <tr>
-                      <td><Link href='' className='download-link'>Beam Smoke Detectors Applications </Link></td>
-                      
-                      <td>   5/17/2023</td>
-                      <td>162.76 KB</td>
-                    </tr>
-                    <tr>
-                    <td><Link href='' className='download-link'>Beam Smoke Detectors Applications </Link></td>
-                      
-                      <td>   5/17/2023</td>
-                      <td>162.76 KB</td>
-                    </tr>
-                    <tr>
-                    <td><Link href='' className='download-link'>Beam Smoke Detectors Applications </Link></td>
-                      
-                      <td>   5/17/2023</td>
-                      <td>162.76 KB</td>
-                    </tr>
-                    <tr>
-                    <td><Link href='' className='download-link'>Beam Smoke Detectors Applications </Link></td>
-                      
-                      <td>   5/17/2023</td>
-                      <td>162.76 KB</td>
-                    </tr>
-                    <tr>
-                    <td><Link href='' className='download-link'>Beam Smoke Detectors Applications </Link></td>
-                      
-                      <td>   5/17/2023</td>
-                      <td>162.76 KB</td>
-                    </tr>
-                    <tr>
-                    <td><Link href='' className='download-link'>Beam Smoke Detectors Applications </Link></td>
-                      
-                      <td>   5/17/2023</td>
-                      <td>162.76 KB</td>
-                    </tr>
-                    <tr>
-                    <td><Link href='' className='download-link'>Beam Smoke Detectors Applications </Link></td>
-                      
-                      <td>   5/17/2023</td>
-                      <td>162.76 KB</td>
-                    </tr>
-                    <tr>
-                    <td><Link href='' className='download-link'>Beam Smoke Detectors Applications </Link></td>
-                      
-                      <td>   5/17/2023</td>
-                      <td>162.76 KB</td>
-                    </tr>
-                    <tr>
-                    <td><Link href='' className='download-link'>Beam Smoke Detectors Applications </Link></td>
-                      
-                      <td>   5/17/2023</td>
-                      <td>162.76 KB</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            )}
+
           {activeTab === "SKU" && (
             <div className="product-resources">
               <table className="resources-table">
-                <tr className="resources-table-rows">
-                  <td className="resources-table-headers">PART NUMBER</td>
-                  <td className="resources-table-headers">COMPARE</td>
-                  <td className="resources-table-headers">DESCRIPTION</td>
-                  <td className="resources-table-headers">ADD TO LIST</td>
-                  <td className="resources-table-headers"></td>
-                </tr>
-                {/* Add SKU resources data here */}
-                <tr>
-                  <td>BEAMHK</td>
-                  <td>Description</td>
-              
-                  <td>Description</td>
-                  <td><Link href='' className='download-link'>ADD TO LIST </Link></td>
-
-                  
-                </tr>
+                <thead>
+                  <tr className="resources-table-rows">
+                    <td className="resources-table-headers">PART NUMBER</td>
+                    <td className="resources-table-headers">COMPARE</td>
+                    <td className="resources-table-headers">DESCRIPTION</td>
+                    <td className="resources-table-headers"></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>BEAMHKR</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      Heating Kit: 15 to 32V: 450mA: For Reflector of Reflected Beam Smoke Detectors
+                    </td>
+                    <td>
+                      <Link
+                        href={`/PipPage/${"BEAMHKR"}`}
+                      >
+                        ORDER ONLINE
+                      </Link>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>BEAMHK</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>Heater kit for Beam detector</td>
+                    <td>
+                      <Link
+                        href={`/PPage/${"BEAMHK"}`}
+                      >
+                        ORDER ONLINE
+                      </Link>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           )}

@@ -10,16 +10,16 @@ import CaratLeft from '../utils/icons/caratright.svg';
 //import '../utils/css/pdp.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import usePdpApiCall from '../customHook/usePdpApiCall1.js';
+import usePdpApiCall from '../customHook/usePdpApiCall1';
 import  {productdetailApi,productpriceApi} from '../utils/ApiList/axiosapi1.js';
 
-import useDownloader from '../customHook/useDownloader.js';
+import useDownloader from '../customHook/useDownloader';
 
-export default function Pdp() {
+export default function Pip() {
 
   //const Pdp = () => {
-    //const router = useRouter();
-    //const { id } = router.query;
+    const router = useRouter();
+    const { id } = router.query;
     const [activeTab, setActiveTab] = useState('Overview');
     const [quantity, setQuantity] = useState(1);
     //const [product, setProduct] = useState(null);

@@ -1,3 +1,4 @@
+//process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const http = require('http');
 const https = require('https');
 const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -26,8 +27,35 @@ const nextjsProxy = createProxyMiddleware({
   ws: true,
 });
 
-const requestListener = (req, res) => {
-  const { method, headers, url } = req;
+const generateApigeeToken = async () => {
+  const APIGEE_AUTH_URL = 'https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/authorizationserver/oauth/token';
+  const CLIENT_ID = 'asm';
+  const CLIENT_SECRET = '1234';
+  const response = await fetch(APIGEE_AUTH_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+      'grant_type': 'client_credentials',
+      'client_id': CLIENT_ID,
+      'client_secret': CLIENT_SECRET
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to generate Apigee token: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.access_token;
+};
+
+
+
+
+const requestListener = async(req, res) => {
+  const { method, headers, url, } = req;
   const basePath = '/server1'; // Adjust this based on your setup
   const parsedUrl = parse(url);
   const apiPath = parsedUrl.pathname.replace(basePath, '');
@@ -37,7 +65,7 @@ const requestListener = (req, res) => {
   // Get cookies from the headers
   const cookies = headers.cookie ? parseCookies(headers.cookie) : {};
   // Access specific cookies
-  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICIxM2JlMzczYS1jYmYzLTQ2OGMtYjg4Yi00MDk5NzNmMDk1ZmEiLAogICJzdWIiIDogImUwNDk0MWVkLTRmYWYtNGIyMC04NDM3LWQxYTU0MzJlODczNyIsCiAgImlhdCIgOiAxNzIzMTE2ODM0LAogICJleHAiIDogMTcyMzExODYzNAp9.i0oiE9o73jyyWCbIfrvQ0PYjx1Bl7kRk6Fxry_BMlcyKj72Zai4i-0wRPr1pTC-il-bAKilWAJZ9pit6aZ4tXylXQlzbQzSCh3kqeSWBpqB61YwZoA9MuGpvrVdxbUz1KONgo4kVyBUMeeo4HVMrU4Yt4XnHsNH37nOFYzyqXAdFyJkO2Bx7sFpe0cQgb2mTYOSW-2APziqnQXbzNVRLQ4kFjuZaRfm5Gc6rRYpg8fitq0q1np3z5jzu9givn10rMLS9OSNy51krK6lxLEOSypmDWUoQB5EtgLBYOjyD8WTOn1hVZxTNWhde7gtiXkahAUK40EXF6F5eU8kXblAMLw";
+  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICI2MTEyMDAyNi0zMTE3LTRiYmEtYjZkYS1iOGJhMjk5NGZjYzgiLAogICJzdWIiIDogIjQ5ODRkMDE1LWI1NDctNGJiMi1hZGE0LTU3YzVlMjM2YmY5NiIsCiAgImlhdCIgOiAxNzIzNTI4NjQ4LAogICJleHAiIDogMTcyMzUzMDQ0OAp9.0aQXfTqDOEXJ1USUJtidbb_WzPxmvEr7KEGf7_XJiYxVSax3eziAaKidaPaxP5Sq_Ywat-ZJxnHXk1v9svtNOAAT84c9ldL8ss786f2D14yNkNg_Z5-wBqjA5uoxkENx0OgavhmnVIdeSBICwzSkT_NVKqk-o0wsZ1YekGCJHIQDYKwL43coc8KzXAFarE5d3iWp9JBIaoM-tbhxsSX7CGt4w2DsAVaLW2jjJhp0c7Aq3nzTMiUePCfBFrQiC2_Os8u7G_7kzwfUV2zkHlD1RAZpPb7u8usyFKrcro4EaZ7R14oWpiS1oQyXLKX3SecO9TMK1qgHhalw429HWQN6qQ";
 
   if (apiPath.includes("/pif/")) {
     if (method === 'OPTIONS') {
@@ -120,7 +148,55 @@ const requestListener = (req, res) => {
         request.end();
       });
     }
-  } else {
+  } 
+
+  else if (apiPath.includes("/productDetails/")) {
+    try {
+      // Ensure apigee_token is defined
+      const apigee_token = await generateApigeeToken();
+
+      // New API handling logic
+      const targetURL = `https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell${apiPath}${queryString ? '?' + queryString : ''}`;
+
+      console.log('Target URL:', targetURL, 'Apigee Token:', apigee_token);
+
+      const response = await fetch(targetURL, {
+        method: method,
+        headers: {
+          'Authorization': "Bearer " + apigee_token,
+        }
+      });
+
+      if (!response.ok) {
+        console.error(`Response not OK. Status: ${response.status}. Text: ${response.statusText}`);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(data)
+      };
+
+    } catch (error) {
+      console.error('Fetch error:', error);
+      return {
+        statusCode: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({ message: 'Internal Server Error', error: error.message })
+      };
+    }
+  } 
+  
+  
+  else {
     // Forward all other requests to the Next.js server
     nextjsProxy(req, res, (err) => {
       if (err) {

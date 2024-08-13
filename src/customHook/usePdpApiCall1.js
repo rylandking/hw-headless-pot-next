@@ -2,14 +2,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-function usePdpApiCall(api,product_no) {
+function usePdpApiCall(api) {
   const [pdpData, setPdpData] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${api}?productCode=${product_no}`);
+        const response = await axios.get(api);
         setPdpData((prevData) => {
           // Only update state if the new data is different
           if (JSON.stringify(prevData) !== JSON.stringify(response.data)) {
@@ -24,7 +24,7 @@ function usePdpApiCall(api,product_no) {
     };
 
     fetchData();
-  }, [api, product_no, pdpData]); // pdpData included to satisfy the linter
+  }, [api, pdpData]); // pdpData included to satisfy the linter
 
   return {
     pdpData,
