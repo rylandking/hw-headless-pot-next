@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
-import Print from '../utils/icons/print.svg';
-import Save from '../utils/icons/save.svg';
-import Minus from '../utils/icons/minus.svg';
-import Plus from '../utils/icons/plus.svg';
-import Success from '../utils/icons/success.svg';
-import CaratRight from '../utils/icons/caratright.svg';
-import CaratLeft from '../utils/icons/caratright.svg';
+import Print from "../utils/icons/print.svg";
+import Save from "../utils/icons/save.svg";
+import Minus from "../utils/icons/minus.svg";
+import Plus from "../utils/icons/plus.svg";
+import Success from "../utils/icons/success.svg";
+import Danger from "../utils/icons/danger.svg";
+import CaratRight from "../utils/icons/caratright.svg";
+import CaratLeft from "../utils/icons/caratright.svg";
 //import '../utils/css/pdp.css';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -14,6 +15,7 @@ import Image from 'next/image';
 //import  {productdetailApi,productpriceApi} from '../utils/ApiList/axiosapi.js';
 
 import useDownloader from '../customHook/useDownloader';
+import useBynderPdf from "../customHook/useBynderPdf";
 
 const Pip = ({data,price,avail}) => {
 
@@ -35,11 +37,7 @@ const Pip = ({data,price,avail}) => {
     }
   }, []);
 
-  const authenticatedDownload = () => {
-    if (userLoggedIn) {
-      // Your download logic here
-    }
-  };
+ 
   
   if(!data) return null;
   if(!price) return null;
@@ -65,11 +63,18 @@ const Pip = ({data,price,avail}) => {
   const date = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.availableDate;
   const color = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.color;
 
-  //const authenticatedDownload = ()=>{
-    //if(localStorage.getItem('userLoggedIn') === "true"){
+  const bynderPdf = useBynderPdf();
+  console.log("bynderpdf",bynderPdf?.bynderPdf?.s3_file);
+
+  const authenticatedDownload = (endpoint,name)=>{
+    if(localStorage.getItem('userLoggedIn') === "true"){
       
-    //} 
-  //}
+      pdfDownloadDummy(endpoint,name);
+      
+    } else{
+    alert("user not logged in");
+    }
+  }
 
   const pdfDownloadDummy = (_url, filename) => {
    // useDownloader(_url, filename);
@@ -158,7 +163,7 @@ const Pip = ({data,price,avail}) => {
   return (
     <div className="BEAMHK-Product">
       <div className="top-beamhk">
-        <div className="products-title-info">
+        <div className="products-title-info-pip">
           {productimg && <h1>{productimg[0]?.altText}</h1>}
           <p>Heater Kit for Beam detector</p>
         </div>
@@ -192,9 +197,9 @@ const Pip = ({data,price,avail}) => {
       </div>
 
       <div className="middle-beamhk">
-        <div className="image-side">
+        <div className="image-side-pip">
           {productimg && (
-            <div className="images">
+            <div className="images-pip">
               <img src={productimg[1].url} className="beamhk-image-2" />
               <img
                 src={productimg[1].url}
@@ -218,9 +223,9 @@ const Pip = ({data,price,avail}) => {
           </div>
         </div>
 
-        <div className="product-info-side">
-          <nav className="product-navbar">
-            <ul className="product-nav-items">
+        <div className="product-info-side-pip">
+          <nav className="product-navbar-pip">
+            <ul className="product-nav-items-pip">
               <li
                 className={activeTab === "Overview" ? "active" : ""}
                 onClick={() => handleTabClick("Overview")}
@@ -244,13 +249,13 @@ const Pip = ({data,price,avail}) => {
             </ul>
           </nav>
 
-          <div className="product-content">
+          <div className="product-content-pip">
             {activeTab === "Overview" && description && (
               <div className="product-overview">
-                <p className="product-desc-title">Product Description</p>
-                <p className="product-desc-info" dangerouslySetInnerHTML={{ __html: description }}  />
-                <p className="feats-and-benefits-title">Features & Ben*</p>
-                <div className="second-level">
+                <p className="product-desc-title-pip">Product Description</p>
+                <p className="product-desc-info-pip" dangerouslySetInnerHTML={{ __html: description }}  />
+                <p className="feats-and-benefits-title-pip">Features & Ben*</p>
+                <div className="second-level-pip">
                   <p>List Price</p>
                   <p>Your Price</p>
                   <p>UoM</p>
@@ -258,8 +263,8 @@ const Pip = ({data,price,avail}) => {
                   <p>Subtotal</p>
                 </div>
 
-                <div className="third-level">
-                  {listPrice && <p className="crossed-line-price">USD {listPrice}</p>}
+                <div className="third-level-pip">
+                  {listPrice && <p className="crossed-line-price-pip">USD {listPrice}</p>}
               { yourPrice &&   <p>
                     USD {yourPrice}{" "}
                     
@@ -324,68 +329,73 @@ const Pip = ({data,price,avail}) => {
                     <td className="resources-table-headers">URL</td>
                   </tr>
                   {resources.map((resource, index) => (
-                    <tr key={index}>
-                      <td>{resource.resourceName}</td>
-                      <td>
-                        <Link
-                          onClick={() =>
-                            pdfDownload(
-                             resource.externalLink,
-                             resource.resourceName
-                            )
-                          }
-                          className="download-link"
-                        >
-                          Download
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                  <tr>
-                      <td>Dummy Cloudinary Pdf</td>
-                      <td>
-                        <Link
-                          onClick={() =>
-                            pdfDownloadDummy(
-                             "https://res.cloudinary.com/dz8qhefe6/image/upload/v1721397461/202-LS-014-2020.pdf",
-                             "demo_cloudinary"
-                            )
-                          }
-                          className="download-link"
-                        >
-                          Download
-                        </Link>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Dummy Builder.io Pdf</td>
-                      <td>
-                        <Link
-                          onClick={() =>
-                            pdfDownloadDummy(
-                             "https://honeywell.bynder.com/m/75ae18c48552a7d0/original/public_pmt-hps-etcr300-4-scn-pdf.pdf",
-                             "demo_builder"
-                            )
-                          }
-                          className="download-link"
-                        >
-                          Download
-                        </Link>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Private Builder.io Pdf</td>
-                      <td>
-                        <Link
-                          onClick={() =>
-                             authenticatedDownload()
-                          }
-                          className="download-link"
-                        >
-                          Download
-                        </Link>
-                      </td>
-                    </tr>
+    <tr key={index}>
+        <td>{resource.resourceName}</td>
+        <td>
+           
+                <Link 
+                    onClick={() => pdfDownload(resource.externalLink, resource.resourceName)} 
+                    href={resource.externalLink} 
+                    className='download-link'
+                >
+                    Download
+                </Link>       
+                 
+        </td>
+    </tr>
+))}
+<td>Dummy Cloudinary Pdf</td>
+<td>
+  <a
+    href="#"
+    onClick={(e) => {
+      e.preventDefault(); // Prevent the default link behavior
+      pdfDownloadDummy(
+        "https://res.cloudinary.com/dz8qhefe6/image/upload/v1721397461/202-LS-014-2020.pdf",
+        "demo_cloudinary"
+      );
+    }}
+    className="download-link"
+  >
+    Download
+  </a>
+</td>
+<tr>
+  <td>Dummy Builder.io Pdf</td>
+  <td>
+    <a
+      href="#"
+      onClick={(e) => {
+        e.preventDefault(); // Prevent the default link behavior
+        pdfDownloadDummy(
+          "https://honeywell.bynder.com/m/75ae18c48552a7d0/original/public_pmt-hps-etcr300-4-scn-pdf.pdf",
+          "demo_builder"
+        );
+      }}
+      className="download-link"
+    >
+      Download
+    </a>
+  </td>
+</tr>
+<tr>
+  <td>Private Builder.io Pdf</td>
+  <td>
+    <a
+      href="#"
+      onClick={(e) => {
+        e.preventDefault(); // Prevent the default link behavior
+        authenticatedDownload(bynderPdf?.bynderPdf?.s3_file, "private_builder_pdf");
+      }}
+      className="download-link"
+    >
+      Download
+    </a>
+  </td>
+</tr>
+
+                                        
+                   
                 </table>
               </div>
             )}

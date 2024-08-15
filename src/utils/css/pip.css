@@ -1,15 +1,9 @@
-.main-content {
-  padding: 20px;
-  max-width: 1140px;
-  /* width: 100%; */
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 100px;
+.BEAMHK-Product {
+    background-color: rgb(245, 245, 245);
+    padding: 10px;
   }
   
-  .product-title {
+  .top-beamhk {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,62 +11,58 @@
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
-    margin-bottom: -41px;
-    width: 75%;
   }
   
-  .products-title-info {
+  .products-title-info-pip {
     flex: 1;
     color: rgb(48, 48, 48);
    /* font-family: HoneywellSans-Medium; */
     min-width: 200px; /* Minimum width to prevent shrinking too much */
   }
   
-  .button-section{
+  .print-section {
+   /* font-family: HoneywellSans-Bold; */
+    font-size: 14px;
+    color: rgb(0, 113, 179);
     display: flex;
     flex-direction: row;
-     justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
   }
-
-  .button-section button{
-    background: #fff;
-    border: 2px solid #007bc2;;
-    border-radius: 5px;
-    color: #007bc2;
-    font-size: 14px;
-    line-height: 18px;
-    padding: 15px 5px;
-    word-break: break-word;
-    width: 232px;
-    letter-spacing: .5px;
-    margin-bottom: 0 !important;
-    margin: 10px;
-    text-transform: uppercase;
-    text-align: center;
-    font-weight: 800;
-    transition: all .3s ease;
+  
+  .print-icon-1, .print-icon-2 {
+    width: 15px;
+    height: auto;
+    margin-left: 5px;
+    padding-right: 5px;
+  }
+  
+  .print-W, .print-WO {
+    color: rgb(0, 113, 179);
+    font-size: 13px;
+    text-transform: none;
+  
+  }
+  
+  .middle-beamhk {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    justify-content: flex-start; /* Align items to the start */
+    align-items: flex-start;
+    gap: 5px;
+  
   }
-  .image-side {
+  
+  .image-side-pip {
     flex: 1;
     max-width: 500px;
     padding: 20px;
   }
   
-  .images {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: white;
-  }
-  .beamhk-image{
+  .images-pip {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-top: 40px;
+    align-items: flex-start;
+    background-color: white;
   }
   
   .beamhk-image-1 {
@@ -86,53 +76,80 @@
     cursor: pointer;
     border: 1px solid rgb(0, 113, 179);
     margin-left: 10px; /* Add margin for spacing */
-    position: relative;
-    
   }
   
-  .savethispage{
-    margin-top: 20px;
-    color: #fff;
-    background-color: #007bc2;
-    min-width: 125px;
-    font-weight: 400;
-    padding: 10px;
-    margin-left: 10px;
+  .add-to-cart-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .save-icon-box {
+    height: 30px;
+  }
+  
+  .save-icon {
+    border: 1px solid black;
+    width: 24px;
+    height: auto;
+    padding: 8px;
+  }
+  
+  .add-to-cart-button {
+    margin-top: 10px;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    max-width: 314px;
+    height: 40px;
+    background-color: rgb(0, 123, 194);
+   /* font-family: HoneywellSans-Bold; */
+    color: white;
   }
-
   
-  .product-info-side {
+  .compare-checkbox-section {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .compare-checkbox {
+    width: 15px;
+    height: 15px;
+    margin: 0 10px;
+  }
+  
+  .product-info-side-pip {
     flex: 2;
     padding: 20px;
-    max-width: 1140px;
-    /* width: 100%; */
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+    max-width: 715px;
   }
   
-  .product-navbar {
+  .product-navbar-pip {
     background-color: white;
     height: 60px;
     text-align: center;
     justify-content: center;
-    margin: 0 auto;
-    max-width: 1140px;
-  }   
+    max-width: 715px;
+    margin: 0 auto; /* Center the navbar */
+  }
   
-  .product-nav-items {
+  .product-nav-items-pip {
     color: black;
     list-style-type: none;
     padding: 10px;
+    padding-top: 30px;
     display: flex; /* Keep items inline */
     flex-direction: row; /* Ensure items are in a row */
     flex-wrap: nowrap; /* Prevent wrapping */
     justify-content: center; /* Center the items horizontally */
   }
   
-  .product-nav-items li {
+  .product-nav-items-pip li {
     display: inline-block;
     margin-right: 40px;
     cursor: pointer;
@@ -141,42 +158,37 @@
     white-space: nowrap;
   }
   
-  .product-nav-items li.active {
+  .product-nav-items-pip li.active {
    /* font-family: HoneywellSans-Bold; */
   }
   
-  .product-nav-items li.active::after {
+  .product-nav-items-pip li.active::after {
     content: '';
     display: block;
     width: 120%;
-    height: 8px;
+    height: 2px;
     background-color: rgb(0, 123, 194);
     position: absolute;
-    bottom: -34px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
-}
-
+  }
   
-  .product-content {
+  .product-content-pip {
     background-color: white;
     padding: 20px;
     border-top: 1px solid #ccc;
     min-height: 200px;
-    display: flex;
-    justify-content: flex-start; /* Align items to the start */
-    align-items: flex-start;
-    gap: 5px;
   }
   
-  .product-desc-title {
+  .product-desc-title-pip {
    /* font-family: HoneywellSans-Medium; */
     margin: 10px 0;
     font-size: 20px;
     color: black;
   }
   
-  .product-desc-info {
+  .product-desc-info-pip {
    /* font-family: HoneywellSans-Medium; */
     margin: 10px 0;
     font-size: 15px;
@@ -184,31 +196,20 @@
     line-height: 1.3rem;
   }
   
-
-  .product-overview-pdp{
-    width:50%;
-  }
-  .product-specifications{
-    width:100%;
-  }
-  .product-resources{
-    width:100%;
-  }
-
-  .feats-and-benefits-title {
+  .feats-and-benefits-title-pip {
    /* font-family: HoneywellSans-Bold; */
     font-size: 15px;
     color: black;
     margin-bottom: 40px;
   }
   
-  .second-level {
+  .second-level-pip {
     display: flex;
     justify-content: space-between;
     border-top: 1px solid rgb(208, 208, 208);
   }
   
-  .second-level p {
+  .second-level-pip p {
     padding-top: 20px;
    /* font-family: HoneywellSans-Bold; */
     flex: 1;
@@ -217,12 +218,12 @@
     text-align: center; /* Center align text */
   }
   
-  .third-level {
+  .third-level-pip {
     display: flex;
     justify-content: space-between;
   }
   
-  .third-level p {
+  .third-level-pip p {
    /* font-family: HoneywellSans-Bold; */
     flex: 1;
     margin: 0;
@@ -231,7 +232,7 @@
     text-align: center; /* Center align text */
   }
   
-  .crossed-line-price {
+  .crossed-line-price-pip {
     text-decoration: line-through;
   }
   
@@ -542,6 +543,3 @@
       font-size: 0.5em;
     }
   }
-  
-  
-  

@@ -12,6 +12,7 @@ import '../utils/css/SearchBarW.css';
 import '../utils/css/soldToDropdown.css';
 import '../utils/css/Testingdrop.css';
 import Layout from './Layout.js';
+import '../utils/css/pip.css';
 
 function MyApp({ Component, pageProps }) {
     return (

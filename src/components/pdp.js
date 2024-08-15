@@ -163,7 +163,7 @@ const Pdp = () => {
                     <td>Heater kit for Beam detector</td>
                     <td>
                       <Link
-                        href={`/PPage/${"BEAMHK"}`}
+                        href={`/PipPage/${"BEAMHK"}`}
                       >
                         ORDER ONLINE
                       </Link>

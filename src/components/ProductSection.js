@@ -4,7 +4,7 @@ import CaratUp from '../utils/icons/caratup.svg';
 //import '../utils/css/ProductSection.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import usePdpApiCall from '../customHook/usePdpApiCall1';
+import usePdpApiCall from '../customHook/usePdpApiCall';
 import {getProductDetail,getPriceDetail,getAvailability} from '../utils/ApiList/axiosapi';
 
 const ProductSection = () => {

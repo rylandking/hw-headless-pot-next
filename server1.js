@@ -1,4 +1,4 @@
-//process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const http = require('http');
 const https = require('https');
 const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -22,6 +22,7 @@ const PROXY_PORT = 4000; // Port where proxy server will run
 
 // Create the proxy middleware
 const nextjsProxy = createProxyMiddleware({
+ // console.log(`Proxy server is running on port ${PROXY_PORT}`);
   target: `http://localhost:${NEXTJS_PORT}`,
   changeOrigin: true,
   ws: true,
@@ -44,7 +45,7 @@ const generateApigeeToken = async () => {
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to generate Apigee token: ${response.statusText}`);
+    throw new Error('Failed to generate Apigee token: ${response.statusText}');
   }
 
   const data = await response.json();
@@ -52,20 +53,19 @@ const generateApigeeToken = async () => {
 };
 
 
-
-
 const requestListener = async(req, res) => {
-  const { method, headers, url, } = req;
+  const { method, headers, url } = req;
   const basePath = '/server1'; // Adjust this based on your setup
   const parsedUrl = parse(url);
   const apiPath = parsedUrl.pathname.replace(basePath, '');
   const queryString = parsedUrl.query ? '?' + parsedUrl.query : '';
   const fullUrl = `${apiPath}${queryString}`;
+  //const fullUrl = `${apiPath}${queryString ? '?' + queryString : ''}`;
 
   // Get cookies from the headers
   const cookies = headers.cookie ? parseCookies(headers.cookie) : {};
   // Access specific cookies
-  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICI2MTEyMDAyNi0zMTE3LTRiYmEtYjZkYS1iOGJhMjk5NGZjYzgiLAogICJzdWIiIDogIjQ5ODRkMDE1LWI1NDctNGJiMi1hZGE0LTU3YzVlMjM2YmY5NiIsCiAgImlhdCIgOiAxNzIzNTI4NjQ4LAogICJleHAiIDogMTcyMzUzMDQ0OAp9.0aQXfTqDOEXJ1USUJtidbb_WzPxmvEr7KEGf7_XJiYxVSax3eziAaKidaPaxP5Sq_Ywat-ZJxnHXk1v9svtNOAAT84c9ldL8ss786f2D14yNkNg_Z5-wBqjA5uoxkENx0OgavhmnVIdeSBICwzSkT_NVKqk-o0wsZ1YekGCJHIQDYKwL43coc8KzXAFarE5d3iWp9JBIaoM-tbhxsSX7CGt4w2DsAVaLW2jjJhp0c7Aq3nzTMiUePCfBFrQiC2_Os8u7G_7kzwfUV2zkHlD1RAZpPb7u8usyFKrcro4EaZ7R14oWpiS1oQyXLKX3SecO9TMK1qgHhalw429HWQN6qQ";
+  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICJlOWZlMzAwYi0yNDFlLTQ4Y2QtOTAwOS1kM2MxYjllMDQ4ZjUiLAogICJzdWIiIDogImU4ZWU3YzUwLTBlZDMtNDgwOC1iMmVhLTc3YjU4MzNlMjk4NyIsCiAgImlhdCIgOiAxNzIzNzQ2Njk4LAogICJleHAiIDogMTcyMzc0ODQ5OAp9.h7WE2bzIQjbgphCGYMo37oUyc2Y7iO4VrS1JnVpo2bcu93fLegfv8gr7ZrU9j8DWqsQNCbUTNGES2M7010pdpDYpceoRDkQplGbVSyfQErVouksglc5KTfD-b_mTGbemq2aKCJbvvoI3-AJG0CjOtqpm_JnGFpi4lITl7YgvBLtsTGWSM_gtpPWnTk06jmYMYisHem75vlBY8K1bRVgGyvwxy7fQvY3YAkh33ToZeYxKJU7IJg5bL4RUeFfKplZIpaG0CvDmuMXNmUGiRaiBBuBA37cx9e0OkBWCdm7bLIjuokP-pBHZNSpVEJu8i2jGznVSytkQAS-7e1Xc4bHDkA";
 
   if (apiPath.includes("/pif/")) {
     if (method === 'OPTIONS') {
@@ -78,6 +78,7 @@ const requestListener = async(req, res) => {
       res.end();
     } else {
       const targetURL = "https://buildingsbt.stage.honeywell.com" + fullUrl;
+      //const targetURL = `https://buildingsbt.stage.honeywell.com${fullUrl}`;
       const cookieVal = "2391-token=" + token;
       let requestData = '';
 
@@ -152,46 +153,70 @@ const requestListener = async(req, res) => {
 
   else if (apiPath.includes("/productDetails/")) {
     try {
+      const httpMethod = req.method;
       // Ensure apigee_token is defined
       const apigee_token = await generateApigeeToken();
 
       // New API handling logic
-      const targetURL = `https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell${apiPath}${queryString ? '?' + queryString : ''}`;
-
-      console.log('Target URL:', targetURL, 'Apigee Token:', apigee_token);
+     // const targetURL = `https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell${apiPath}${queryString ? '?' + queryString : ''}`;
+     const targetURL = `https://api.ciq3kgmonc-honeywell1-d3-public.model-t.cc.commerce.ondemand.com/honeywellwebservices/v2/honeywell${apiPath}${queryString ? queryString : ''}`;
+      console.log('HTTP Method:', httpMethod);
+      console.log('Target URL:', targetURL);
+      console.log('Apigee Token:', apigee_token);
+      //console.log('Target URL:', targetURL, 'Apigee Token:', apigee_token);
 
       const response = await fetch(targetURL, {
-        method: method,
+        method: httpMethod,
         headers: {
           'Authorization': "Bearer " + apigee_token,
         }
       });
 
+     //if (!response.ok) {
+       // console.error(`Response not OK. Status: ${response.status}. Text: ${response.statusText}`);
+        //throw new Error(`HTTP error! status: ${response.status}`);
+      //}
       if (!response.ok) {
         console.error(`Response not OK. Status: ${response.status}. Text: ${response.statusText}`);
-        throw new Error(`HTTP error! status: ${response.status}`);
+        res.writeHead(response.status, {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        });
+        res.end(JSON.stringify({ message: 'Error fetching data', statusText: response.statusText }));
+        return;
       }
 
       const data = await response.json();
       console.log('Response data:', data);
 
-      return {
-        statusCode: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify(data)
-      };
-
+      //return {
+        //statusCode: 200,
+        //headers: {
+          //'Access-Control-Allow-Origin': '*'
+        //},
+        //body: JSON.stringify(data)
+      //};
+      res.writeHead(200, {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      });
+      res.end(JSON.stringify(data));
+  
+    
     } catch (error) {
       console.error('Fetch error:', error);
-      return {
-        statusCode: 500,
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify({ message: 'Internal Server Error', error: error.message })
-      };
+      res.writeHead(500, {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      });
+      res.end(JSON.stringify({ message: 'Internal Server Error', error: error.message }));
+      //return {
+        //statusCode: 500,
+       // headers: {
+          //'Access-Control-Allow-Origin': '*'
+       // },
+        //body: JSON.stringify({ message: 'Internal Server Error', error: error.message })
+      //};
     }
   } 
   
@@ -211,4 +236,5 @@ const server = http.createServer(requestListener);
 
 server.listen(PROXY_PORT, () => {
   console.log(`Proxy server is running on port ${PROXY_PORT}`);
+
 });
