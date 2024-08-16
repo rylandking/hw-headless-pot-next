@@ -23,7 +23,7 @@ const ProductSection = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const isLoggedIn = localStorage.getItem("userLoggedIn");
-      setUserLoggedIn(isLoggedIn);
+      setUserLoggedIn(isLoggedIn === "true"); // Ensure it's explicitly checked for the string "true"
     }
   }, []);
   const PdpPageCall = (partNumber) => { 
@@ -56,6 +56,10 @@ const ProductSection = () => {
     { id: 24, partNumber: "V-V123", description: "Enclosed Victory Relay: SPST: N.O. Relay: 24 Vac/dc: 120V AC Coil: 20A Amperage Rating: HOA Switch: Digital HOA Monitor" },
     { id: 25, partNumber: "GFV545", description: "HFO-1234yf (3000 ppm): N2 Balance: 103 L" }
   ];
+
+  if (userLoggedIn === null) {
+    return null;
+  }
 
 
   return (
@@ -96,9 +100,12 @@ const ProductSection = () => {
             <div className='part-item-description'>
               <p className='desc-1'>PART NUMBER</p>
              {/*<p className='desc-2'>{product.partNumber}</p>*/}
-             <Link href={`/PipPage/${product.partNumber}`} className='details-link'>
-      <p className='desc-2'>{product.partNumber}</p>
-    </Link>
+          {/*<Link href={userLoggedIn === "true" ? `/PipPage/${product.partNumber}` : "#"} className='details-link'>*/}
+           <Link href={`/PipPage/${product.partNumber}`} className='details-link'>
+          {/* <Link href={userLoggedIn ? `/PipPage/${product.partNumber}` : "#"} className='details-link'>*/}
+            
+             <p className='desc-2'>{product.partNumber}</p>     
+             </Link>
               <p className='desc-3'>{product.description}</p>
               <div className='details-button'>
               <Link href={`/PdpPage`} className='details-link'>Product Details</Link>

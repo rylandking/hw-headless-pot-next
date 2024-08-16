@@ -294,6 +294,7 @@ const Pip = ({data,price,avail}) => {
                    {quant && date && <p className="amount-available-text">
                       <Image
                         src={color === "Green" ? Success : Danger}
+              
                         alt="Honeywell success icon"
                         className="success-icon"
                       />

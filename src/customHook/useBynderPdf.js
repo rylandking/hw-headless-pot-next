@@ -1,11 +1,11 @@
-import react from 'react';
+import React, { useState, useEffect } from 'react';
 import { getBynderPdf } from '../utils/ApiList/axiosapi.js';
 
 function useBynderPdf() {
-    const [bynderPdf, setBynderPdf] = react.useState([]);
-    const [error, setError] = react.useState(null);
+    const [bynderPdf, setBynderPdf] = useState([]);
+    const [error, setError] = useState(null);
 
-    react.useEffect(() => {
+    useEffect(() => {
         try {
             fetch(getBynderPdf)
             .then(response => response.json())

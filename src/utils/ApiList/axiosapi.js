@@ -25,6 +25,8 @@
    
    const getPriceDetail ="http://localhost:4000/productDetails/price";
    const getAvailability ="http://localhost:4000/productDetails/atp";
+
+   const getBynderPdf = "http://localhost:4000/download/?type=original";
    
    export {
      contactApi,
@@ -37,5 +39,6 @@
      getProductDetail,
      getPriceDetail,
      getAvailability,
+     getBynderPdf
    };
  

@@ -52,6 +52,29 @@ const generateApigeeToken = async () => {
   return data.access_token;
 };
 
+const generateBinderToken = async () => {
+  const Binder_AUTH_URL = 'https://honeywell.bynder.com/v6/authentication/oauth2/token';
+  const CLIENT_ID = 'd6aca289-4ca3-47d0-a5ed-a3e1716b062d';
+  const CLIENT_SECRET = '0e07b2ae-0c90-44e9-9e94-69dd43c379a4';
+  const response = await fetch(Binder_AUTH_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+      'grant_type': 'client_credentials',
+      'client_id': CLIENT_ID,
+      'client_secret': CLIENT_SECRET
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to generate Bynder token: ${response.statusText}`);
+  }
+  const data = await response.json();
+  return data.access_token;
+};
+
 
 const requestListener = async(req, res) => {
   const { method, headers, url } = req;
@@ -65,7 +88,7 @@ const requestListener = async(req, res) => {
   // Get cookies from the headers
   const cookies = headers.cookie ? parseCookies(headers.cookie) : {};
   // Access specific cookies
-  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICJlOWZlMzAwYi0yNDFlLTQ4Y2QtOTAwOS1kM2MxYjllMDQ4ZjUiLAogICJzdWIiIDogImU4ZWU3YzUwLTBlZDMtNDgwOC1iMmVhLTc3YjU4MzNlMjk4NyIsCiAgImlhdCIgOiAxNzIzNzQ2Njk4LAogICJleHAiIDogMTcyMzc0ODQ5OAp9.h7WE2bzIQjbgphCGYMo37oUyc2Y7iO4VrS1JnVpo2bcu93fLegfv8gr7ZrU9j8DWqsQNCbUTNGES2M7010pdpDYpceoRDkQplGbVSyfQErVouksglc5KTfD-b_mTGbemq2aKCJbvvoI3-AJG0CjOtqpm_JnGFpi4lITl7YgvBLtsTGWSM_gtpPWnTk06jmYMYisHem75vlBY8K1bRVgGyvwxy7fQvY3YAkh33ToZeYxKJU7IJg5bL4RUeFfKplZIpaG0CvDmuMXNmUGiRaiBBuBA37cx9e0OkBWCdm7bLIjuokP-pBHZNSpVEJu8i2jGznVSytkQAS-7e1Xc4bHDkA";
+  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICI2MmI5YTYyMy0wOGU5LTQzYzktOGYyOC04M2I0NGU1ODY3YzkiLAogICJzdWIiIDogImIyNTcxODE4LTI0OTgtNDIzMS04ODQwLTM0NWU4NTM4Mzg1MiIsCiAgImlhdCIgOiAxNzIzODA1OTg1LAogICJleHAiIDogMTcyMzgwNzc4NQp9.KEr3R8cWex__MRs273I-Q0-uHd324JgT1_rwKq71XAY2b_ahLKaPA24mA3z2UH3x1of37NKQ_jem0YOxB016ucwLUFCJuQCSPSptuUK2Dtoe45oDCbHxctfWu-BV9k81RCBBQZ0-x0jGjCACTWfwWGv5LxPdUH_qNpIy4T13MEKHOLkTbtGWJZBu9Cd9l_9LI5-seNvsm3oih5ne3M0aQzaOpl_dRyOhTaxT86BUXCL2yddqS9QuDotk3-0OJmXcUatNFLlURhwYxz0gtFivLtLc-MWOSLJkSkVLDGRj5-_BIJQtZF_37r0WschnwSaQE1Ufw4oZ8fG7pcaqkINKuw";
 
   if (apiPath.includes("/pif/")) {
     if (method === 'OPTIONS') {
@@ -219,7 +242,54 @@ const requestListener = async(req, res) => {
       //};
     }
   } 
+  else if (apiPath.includes("/download/")) {
+    const httpMethod = req.method;
+    try {
+      // Ensure binder_token is defined
+      const binder_token = await generateBinderToken();
+
+      // New API handling logic
+      const targetURL = `https://honeywell.bynder.com/api/v4/media/DA1CA705-D8BE-434F-9C08F7A226DA6950${apiPath}${queryString ? '?' + queryString : ''}`;
+
+      console.log('Binder Target URL:', targetURL, 'binder_token:', binder_token);
+
+      const response = await fetch(targetURL, {
+        method: httpMethod,
+        headers: {
+          'Authorization': "Bearer " + binder_token,
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      res.writeHead(200, {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      });
+      res.end(JSON.stringify(data));
   
+    
+    } catch (error) {
+      console.error('Fetch error:', error);
+      res.writeHead(500, {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      });
+      res.end(JSON.stringify({ message: 'Internal Server Error', error: error.message }));
+      //return {
+        //statusCode: 500,
+       // headers: {
+          //'Access-Control-Allow-Origin': '*'
+       // },
+        //body: JSON.stringify({ message: 'Internal Server Error', error: error.message })
+      //};
+    }
+  } 
   
   else {
     // Forward all other requests to the Next.js server
