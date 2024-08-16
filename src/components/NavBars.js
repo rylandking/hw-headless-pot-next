@@ -23,11 +23,28 @@ const Header = ({ detailData = {}, contactData, error }) => {
   const [toggleSearchBox, setToggleSearchBox] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState('');
 
+  
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      setSelectedAccount(localStorage.getItem('selectedAccount') || '');
+      const sessionValid = localStorage.getItem('session_valid');
+      const selectedAcc = localStorage.getItem('selectedAccount') || '';
+      setSignedIn(sessionValid === 'true');
+      setSelectedAccount(selectedAcc);
     }
   }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (detailData.session_valid) {
+        localStorage.setItem('userLoggedIn', 'true');
+        localStorage.setItem('session_valid', 'true');
+      } else {
+        localStorage.setItem('userLoggedIn', 'false');
+        localStorage.setItem('session_valid', 'false');
+      }
+    }
+  }, [detailData.session_valid]);
 
   const toggleDropdown = (e) => {
     e.stopPropagation();

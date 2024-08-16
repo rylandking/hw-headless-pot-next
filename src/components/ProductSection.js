@@ -10,7 +10,7 @@ import {getProductDetail,getPriceDetail,getAvailability} from '../utils/ApiList/
 const ProductSection = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [visibleProducts, setVisibleProducts] = useState(5);
-  const [userLoggedIn, setUserLoggedIn] = useState(null);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   const handleDropdownClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -22,10 +22,15 @@ const ProductSection = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const isLoggedIn = localStorage.getItem("userLoggedIn");
-      setUserLoggedIn(isLoggedIn === "true"); // Ensure it's explicitly checked for the string "true"
+      const isLoggedIn = localStorage.getItem("userLoggedIn")==="true";
+
+      setUserLoggedIn(isLoggedIn); // Ensure it's explicitly checked for the string "true"
+     
     }
   }, []);
+  console.log("status:" , userLoggedIn);
+  
+
   const PdpPageCall = (partNumber) => { 
     console.log(partNumber);
   }
@@ -101,8 +106,8 @@ const ProductSection = () => {
               <p className='desc-1'>PART NUMBER</p>
              {/*<p className='desc-2'>{product.partNumber}</p>*/}
           {/*<Link href={userLoggedIn === "true" ? `/PipPage/${product.partNumber}` : "#"} className='details-link'>*/}
-           <Link href={`/PipPage/${product.partNumber}`} className='details-link'>
-          {/* <Link href={userLoggedIn ? `/PipPage/${product.partNumber}` : "#"} className='details-link'>*/}
+          {/* <Link href={`/PipPage/${product.partNumber}`} className='details-link'>*/}
+          <Link href={userLoggedIn ? `/PipPage/${product.partNumber}` : "#"} className='details-link'>
             
              <p className='desc-2'>{product.partNumber}</p>     
              </Link>
