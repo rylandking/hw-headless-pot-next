@@ -13,6 +13,7 @@ import '../utils/css/soldToDropdown.css';
 import '../utils/css/Testingdrop.css';
 import Layout from './Layout.js';
 import '../utils/css/pip.css';
+//import '../utils/css/NavBars.css';
 
 function MyApp({ Component, pageProps }) {
     return (

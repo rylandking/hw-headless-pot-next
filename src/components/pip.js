@@ -345,7 +345,7 @@ const Pip = ({data,price,avail}) => {
         </td>
     </tr>
 ))}
-<td>Dummy Cloudinary Pdf</td>
+{/*<td>Dummy Cloudinary Pdf</td>
 <td>
   <a
     href="#"
@@ -360,7 +360,7 @@ const Pip = ({data,price,avail}) => {
   >
     Download
   </a>
-</td>
+</td>*/}
 <tr>
   <td>Dummy Builder.io Pdf</td>
   <td>
