@@ -6,13 +6,20 @@ function useBynderPdf() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        try {
-            fetch(getBynderPdf)
-            .then(response => response.json())
-            .then(data_result => setBynderPdf(data_result))
-        } catch (error) {
-            setError(error);
-        }
+        const fetchPdf = async () => {
+            try {
+                const response = await fetch(getBynderPdf);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data_result = await response.json();
+                setBynderPdf(data_result);
+            } catch (error) {
+                setError(error);
+            }
+        };
+
+        fetchPdf();
     }, []);
 
     return { bynderPdf, error };

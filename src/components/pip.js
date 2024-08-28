@@ -13,9 +13,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 //import usePdpApiCall from '../customHook/usePdpApiCall';
 //import  {productdetailApi,productpriceApi} from '../utils/ApiList/axiosapi.js';
-
-import useDownloader from '../customHook/useDownloader';
 import useBynderPdf from "../customHook/useBynderPdf";
+import useDownloader from '../customHook/useDownloader';
+
 
 const Pip = ({data,price,avail}) => {
 
@@ -38,7 +38,7 @@ const Pip = ({data,price,avail}) => {
   }, []);
 
  
-  
+  const bynderPdf = useBynderPdf();
   if(!data) return null;
   if(!price) return null;
   if(!avail) return null;
@@ -63,7 +63,7 @@ const Pip = ({data,price,avail}) => {
   const date = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.availableDate;
   const color = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.color;
 
-  const bynderPdf = useBynderPdf();
+  //const bynderPdf = useBynderPdf();
   console.log("bynderpdf",bynderPdf?.bynderPdf?.s3_file);
 
   const authenticatedDownload = (endpoint,name)=>{
