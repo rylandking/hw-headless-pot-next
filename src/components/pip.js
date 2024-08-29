@@ -13,9 +13,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 //import usePdpApiCall from '../customHook/usePdpApiCall';
 //import  {productdetailApi,productpriceApi} from '../utils/ApiList/axiosapi.js';
-
-import useDownloader from '../customHook/useDownloader';
 import useBynderPdf from "../customHook/useBynderPdf";
+import useDownloader from '../customHook/useDownloader';
+
 
 const Pip = ({data,price,avail}) => {
 
