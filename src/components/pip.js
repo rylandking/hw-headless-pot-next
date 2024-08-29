@@ -63,7 +63,7 @@ const Pip = ({data,price,avail}) => {
   const date = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.availableDate;
   const color = avail?.pdpData?.availableDates && avail?.pdpData?.availableDates[0]?.color;
 
-  const bynderPdf = useBynderPdf();
+
   console.log("bynderpdf",bynderPdf?.bynderPdf?.s3_file);
 
   const authenticatedDownload = (endpoint,name)=>{
