@@ -1,39 +1,43 @@
 'use client';
-import ContentStack from 'contentstack';
-import { useState ,useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
 export default function useContentStackApi() {
   const [contentData, setContentData] = useState([]);
-  //Initialize the Contentstack Stack for react
-  const Stack = ContentStack.Stack(
-    "blt8cf7fa06f3654267",
-    "cs11432c464beca575ef07a998",
-    "preview"
-  );
-  //Get a Single Entry
- useEffect(() => {
-  //const Query = Stack.ContentType("home_page")
-  const Query = Stack.ContentType("pot_landing_page")
-  //.Entry("bltb33c024768d87c22")
-  .Entry("blta135005fa8d23ccf")
-  .toJSON()
-  .fetch()
-  .then(
-    function success(entry) {
-      console.log(entry["title"]);
-      console.log("entry", entry);
-      setContentData(entry.components);
-      //console.log("entry", entry.components[0].teaser.content);
-      if (entry.components && entry.components.length > 0 && entry.components[0].teaser) {
-        setContentData(entry.components[0].teaser.content);
-      }
+  
+  useEffect(() => {
+    // Dynamic import of the Contentstack library to avoid issues with SSR or deployment.
+    const fetchData = async () => {
+      try {
+        const ContentStack = (await import('contentstack')).default;
 
-    },
-    function error(err) {
-      // err object
-      console.log(err);
-    }
-  );
+        const Stack = ContentStack.Stack({
+          api_key: "blt8cf7fa06f3654267",
+          delivery_token: "cs11432c464beca575ef07a998",
+          environment: "preview"
+        });
+
+        const Query = Stack.ContentType("pot_landing_page")
+          .Entry("blta135005fa8d23ccf")
+          .toJSON();
+
+        const entry = await Query.fetch();
+        
+        console.log(entry["title"]);
+        console.log("entry", entry);
+
+        if (entry.components && entry.components.length > 0 && entry.components[0].teaser) {
+          setContentData(entry.components[0].teaser.content);
+        } else {
+          setContentData(entry.components);
+        }
+      } catch (err) {
+        console.error("Error fetching Contentstack data:", err);
+      }
+    };
+
+    fetchData();
   }, []);
+
   return contentData;
 }
