@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
+//import dynamic from 'next/dynamic';
 
 export default function useContentStackApi() {
   const [contentData, setContentData] = useState([]);
