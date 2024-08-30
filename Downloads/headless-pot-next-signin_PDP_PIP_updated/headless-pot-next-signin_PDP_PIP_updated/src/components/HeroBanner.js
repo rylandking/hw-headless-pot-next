@@ -1,61 +1,41 @@
-
-//import "../utils/css/home.css";
 import Image from 'next/image';
-import useContentStackApi from '../customHook/ContentStackApi'; // Adjust the path accordingly
-
+import useBuilder_io from "../customHook/useBuilder_io";
 
 export default function HeroBanner() {
-    const contentData = useContentStackApi();
-    
-    // Find the hero banner data from the API response
-    const heroBannerData = contentData.find(component => component.herobanner);
+    const builderData = useBuilder_io();
+    console.log("builderData", builderData);
 
-    if (!heroBannerData) {
-        return null; // or a loading spinner if you prefer
+    // Access the data from builderData safely
+    const bannerImage = builderData?.data?.heroBanner?.bannerImage?.secure_url;
+    const bannerHeader = builderData?.data?.heroBanner?.bannerHeader;
+    const bannerText = builderData?.data?.heroBanner?.bannerText;
+    console.log("bannerImage URL:", bannerImage);
+    console.log("bannerHeader:", bannerHeader);
+    console.log("bannerText:", bannerText);
+
+    // Check if data is available
+    if (!bannerImage || !bannerHeader || !bannerText) {
+        console.error("HeroBanner data is missing:", builderData);
+        return null;
     }
 
-    const { banner_image, header, banner_text } = heroBannerData.herobanner;
-
     return (
-        <>
-            <div className="hero-image">
-                <img 
-                    src={banner_image[0].secure_url} 
-                    alt="hero banner" 
-                   // style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                   //width={banner_image[0].width} 
-                   //height={banner_image[0].height} 
-                   />
-                
-                <div className="bannertext">
-                    <h1 className="header1" dangerouslySetInnerHTML={{ __html: header }} />
-                    <p className="text-white para" dangerouslySetInnerHTML={{ __html: banner_text }} />
-                </div>
-            </div>
-        </>
-    );
-}
-/*export default function HeroBanner() {
-    return (
-       
-        <>
         <div className="hero-image">
-  <img src="https://honeywell.scene7.com/is/image/honeywell/street-view-buildings-2880x1440:5-2-hero" alt="Photographer" style={{"width":"100%", "height":"100%", "object-fit":"cover"}}/>
-  <div className="bannertext">
-           <h1 className="header1">
-              <span className="text-red">A SAFER</span>
-              <span className="text-red">MORE</span>
-              <span className="text-red">CONFIDENT</span>
-              <span className="text-white">WELCOME BACK.</span>
-           </h1>
-           <p className="text-white para">
-              As we go back to work, back to travel and even back to play, let's
-              also go forward. To embrace new opportunities. Together.
-            </p>
-           </div>
-</div>
-        </>
-    );
-}
-
-*/
+          {bannerImage && (
+            <img
+              src={bannerImage}
+              alt="Photographer"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          )}
+          <div className="bannertext">
+            {bannerHeader && (
+              <h1 className="header1" dangerouslySetInnerHTML={{ __html: bannerHeader }} />
+            )}
+            {bannerText && (
+              <div className="text-white para" dangerouslySetInnerHTML={{ __html: bannerText }} />
+            )}
+          </div>
+        </div>
+      );
+    }

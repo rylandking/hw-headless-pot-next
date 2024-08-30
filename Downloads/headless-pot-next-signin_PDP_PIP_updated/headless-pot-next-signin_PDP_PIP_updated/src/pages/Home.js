@@ -3,11 +3,12 @@ import HomeSection2 from "../components/HomeSection2";
 import HomeSectionMui from "../components/HomeSectionMui";
 import ImageGrid from "../components/Section-4";
 import ImageBanner from "../components/Section-5";
-import useContentStackApi from "../customHook/ContentStackApi";
-
+//import useContentStackApi from "../customHook/ContentStackApi";
+import useBuilder_io from "../customHook/useBuilder_io";
 export default function Home() {
 
-  const data = useContentStackApi();
+  //const data = useContentStackApi();
+  const data = useBuilder_io();
   console.log("contenapidatahook", data);
   if (!data) {
     return <div>Loading...</div>; // Show a loading indicator while fetching data
