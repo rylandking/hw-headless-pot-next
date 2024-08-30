@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "node server1.js"
+    "start": "next start"
   },
   "dependencies": {
+    "@builder.io/react": "^5.0.1",
+    "@builder.io/sdk": "^3.0.1",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.4",
