@@ -24,6 +24,7 @@ const PROXY_PORT = 4000; // Port where proxy server will run
 const nextjsProxy = createProxyMiddleware({
  // console.log(`Proxy server is running on port ${PROXY_PORT}`);
   target: `http://localhost:${NEXTJS_PORT}`,
+  
   changeOrigin: true,
   ws: true,
 });
