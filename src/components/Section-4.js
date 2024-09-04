@@ -15,8 +15,7 @@ const ImageGrid = (props) => {
 
     // Safely access image grid components using chaining methods
     //const imageGridComponents = builderData.data.imageGridObject
-    const imageGridComponents = props?.imageGridObject?
-        .flatMap(grid => {
+    const imageGridComponents = props?.imageGridObject?.flatMap(grid => {
             console.log("Grid Object:", grid);
             return grid.imageobject || [];
         }) // Flatten the array and ensure imageobject is present
