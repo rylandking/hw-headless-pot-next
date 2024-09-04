@@ -18,12 +18,10 @@ const ImageGrid = (props) => {
     const imageGridComponents = props?.imageGridObject?.flatMap(grid => {
             console.log("Grid Object:", grid);
             return grid.imageobject || [];
-        }) // Flatten the array and ensure imageobject is present
-        .filter(item => {
+        }).filter(item => {
             console.log("Image Object (before filter):", item);
             return item.image; // Filter out items without an image
-        })
-        .map(item => {
+        }).map(item => {
             const processedItem = {
                 src: item.image,
                 alt: item.alttext || '',
