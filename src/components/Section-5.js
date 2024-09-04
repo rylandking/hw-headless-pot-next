@@ -1,12 +1,13 @@
 import React from 'react';
 //import useContentStackApi from '../customHook/ContentStackApi'; 
 import useBuilder_io from "../customHook/useBuilder_io"; 
-const ImageBanner = () => {
+const ImageBanner = (props) => {
   // Fetch data using the custom hook
   const builderData = useBuilder_io();
   
   // Check if builderData is available and contains imageBanner data
-  const imageBanner = builderData?.data?.imageBanner;
+  //const imageBanner = builderData?.data?.imageBanner;
+  const imageBanner = props;
 
   // Log the imageBanner object to debug
   console.log("ImageBanner Data:", imageBanner);
@@ -24,7 +25,7 @@ const ImageBanner = () => {
     referenceLink = {}
   } = imageBanner;
 
-  const imageUrl = imageBannerImage.secure_url || '';
+  const imageUrl = imageBannerImage || '';
 
   return (
     <div className="ImageBanner" id="div-1">

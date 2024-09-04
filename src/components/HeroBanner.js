@@ -1,14 +1,21 @@
 import Image from 'next/image';
 import useBuilder_io from "../customHook/useBuilder_io";
 
-export default function HeroBanner() {
+export default function HeroBanner(props) {
     const builderData = useBuilder_io();
     console.log("builderData", builderData);
 
     // Access the data from builderData safely
-    const bannerImage = builderData?.data?.heroBanner?.bannerImage?.secure_url;
-    const bannerHeader = builderData?.data?.heroBanner?.bannerHeader;
-    const bannerText = builderData?.data?.heroBanner?.bannerText;
+    //const bannerImage = builderData?.data?.heroBanner?.bannerImage?.secure_url;
+    //const bannerHeader = builderData?.data?.heroBanner?.bannerHeader;
+    //const bannerText = builderData?.data?.heroBanner?.bannerText;
+
+    const bannerImage = props?.bannerImage;
+    const bannerHeader = props?.bannerHeader;
+    const bannerText = props?.bannerText;
+
+    //const bannerImage1 = props?.bannerImage;
+    //console.log("bannerImage URL :", bannerImage1);
     console.log("bannerImage URL:", bannerImage);
     console.log("bannerHeader:", bannerHeader);
     console.log("bannerText:", bannerText);

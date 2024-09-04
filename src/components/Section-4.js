@@ -1,7 +1,7 @@
 import React from "react";
 import useBuilder_io from "../customHook/useBuilder_io";
 
-const ImageGrid = () => {
+const ImageGrid = (props) => {
     const builderData = useBuilder_io();
 
     // Log the raw data fetched by useBuilder_io
@@ -14,7 +14,8 @@ const ImageGrid = () => {
     }
 
     // Safely access image grid components using chaining methods
-    const imageGridComponents = builderData.data.imageGridObject
+    //const imageGridComponents = builderData.data.imageGridObject
+    const imageGridComponents = props?.imageGridObject?
         .flatMap(grid => {
             console.log("Grid Object:", grid);
             return grid.imageobject || [];
@@ -36,14 +37,14 @@ const ImageGrid = () => {
     // Log the final array of image components
     console.log("Image Grid Components:", imageGridComponents);
 
-    if (imageGridComponents.length === 0) {
+    if (imageGridComponents?.length === 0) {
         console.log("No images available");
         return <div>No images available</div>; 
     }
 
     return (
         <div className="collage">
-            {imageGridComponents.map((item, index) => {
+            {imageGridComponents?.map((item, index) => {
                 console.log(`Rendering Image ${index + 1}:`, item);
                 return (
                     <img

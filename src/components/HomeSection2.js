@@ -3,7 +3,7 @@ import useContentStackApi from '../customHook/ContentStackApi'; // Adjust the pa
 //import "../utils/css/home.css";
 import useBuilder_io from "../customHook/useBuilder_io";
 
-export default function HomeSection2() {
+export default function HomeSection2(props) {
     const contentData = useContentStackApi();
     const builderData = useBuilder_io();
 
@@ -13,8 +13,10 @@ export default function HomeSection2() {
     if (!sectionComponent) {
        return <div>Loading...</div>; // or a loading spinner if you prefer
     }
-    const header1 = builderData?.data?.section?.header;
-    const ctaButtons = builderData?.data?.section?.ctaButtons;
+    //const header1 = builderData?.data?.section?.header;
+    const header1 = props?.header;
+    //const ctaButtons = builderData?.data?.section?.ctaButtons;
+    const ctaButtons = props?.ctaButtons;
     console.log("header1",header1);
     console.log("ctaButtons",ctaButtons);
 
@@ -26,13 +28,13 @@ export default function HomeSection2() {
             <div className="container">
                 <div className="header" dangerouslySetInnerHTML={{ __html: header1 }}></div>
                 <div className="footer">
-                    {ctaButtons.map((button, index) => (
+                    {ctaButtons?.map((button, index) => (
                         <a 
                             key={index} 
-                            href={button.button.url} 
+                            href={button?.button?.url}
                             className="button-primary"
                         >
-                            {button.button.title}
+                            {button?.button?.title}
                         </a>
                     ))}
                 </div>
