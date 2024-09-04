@@ -1,6 +1,7 @@
 import React from 'react';
 //import useContentStackApi from '../customHook/ContentStackApi'; 
-import useBuilder_io from "../customHook/useBuilder_io"; 
+import useBuilder_io from "../customHook/useBuilder_io";
+
 const ImageBanner = (props) => {
   // Fetch data using the custom hook
   const builderData = useBuilder_io();
