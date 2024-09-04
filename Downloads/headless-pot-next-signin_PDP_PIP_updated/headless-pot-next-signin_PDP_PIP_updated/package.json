@@ -2,11 +2,11 @@
   "name": "sampleapp",
   "version": "0.1.0",
   "private": true,
- "scripts": {    
-   "dev": "node server1.js",    
-   "build": "next build",    
-   "start": "NODE_ENV=production node server1.js"  
- },
+  "scripts": {
+    "dev": "node server1.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server1.js"
+  },
   "dependencies": {
     "@builder.io/react": "^5.0.1",
     "@builder.io/sdk": "^3.0.1",
