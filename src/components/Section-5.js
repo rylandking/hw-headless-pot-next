@@ -28,17 +28,13 @@ const ImageBanner = (props) => {
   const imageUrl = imageBannerImage || '';
 
   return (
+
     <div className="ImageBanner" id="div-1">
+
       <div className="image-container" id="div-2">
         <div id="div-3">
           <div>
-            <img
-              src={imageUrl}
-              alt={title}
-              className="banner-image"
-              width={imageBannerImage.width || 'auto'} 
-              height={imageBannerImage.height || 'auto'}
-            />
+            <img src={imageUrl} alt={title} className="banner-image" width='auto' height='auto' />
           </div>
         </div>
       </div>
@@ -47,11 +43,11 @@ const ImageBanner = (props) => {
         <h2 id="h2-1">{eyebrow}</h2>
         <h2 id="h2-2">{title}</h2>
         <div id="div-5">
-          <p id="p-1" dangerouslySetInnerHTML={{ __html: description }}></p>
+            <div id="p-1" dangerouslySetInnerHTML={{ __html: description }}></div>
         </div>
         <div className="cta">
-          <a href={referenceLink.url} target="_blank" rel="noopener noreferrer">
-            {referenceLink.title}
+         <a href={referenceLink.url} target="_blank" rel="noopener noreferrer">
+                {referenceLink.title}
           </a>
         </div>
       </div>
