@@ -48,11 +48,12 @@ const SearchBar = ({setToggleSearchBox}) => {
           placeholder={searchPlaceHolder}
           
         />
-        <button className='search-btn' onClick={handleonClick}>
-          <Link href="/search">
-          <Image src={Magnify} alt="search-icon" className='search-icon'/>
-          </Link>
-          </button>
+              <Link href="/search">
+  <a className='search-btn'>
+    <Image src={Magnify} alt="search-icon" className='search-icon' />
+  </a>
+</Link>
+        
         </div>
         </div>
 
