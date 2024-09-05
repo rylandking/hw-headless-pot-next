@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server1.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server1.js"
+    "start": "next start"
   },
   "dependencies": {
     "@builder.io/react": "^5.0.1",
