@@ -599,14 +599,13 @@ li a img {
   background-color: #f7f7f7;
 }
 
-.text-1,
 .text-2 {
   text-align: center;
   color: #303030;
 }
 
 .text-1 {
-  font-size: 40px;
+  font-size: 11px;
   font-family: HoneywellSans-Medium;
 }
 
