@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import Save from '../utils/icons/save.svg';
+import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import Save from "../utils/icons/save.svg";
 
 const Pdp = () => {
   const [activeTab, setActiveTab] = useState("Overview");
@@ -78,7 +78,9 @@ const Pdp = () => {
                     ))}
                   </div>
                   <div>
-                    <button className="savethispage">SAVE THIS PAGE AS PDF</button>
+                    <button className="savethispage">
+                      SAVE THIS PAGE AS PDF
+                    </button>
                   </div>
                 </div>
               </div>
@@ -86,7 +88,11 @@ const Pdp = () => {
               <div className="product-overview-pdp">
                 <div className="button-section">
                   <button>CONTACT US</button>
-                  <button onClick={() => handleTabClick("SKU")}>BUY ONLINE</button>
+                  {userLoggedIn === "true" && (
+                    <button onClick={() => handleTabClick("SKU")}>
+                      BUY ONLINE
+                    </button>
+                  )}
                   <button>FIND A PARTNER</button>
                 </div>
                 <p className="product-desc-info">
@@ -145,15 +151,22 @@ const Pdp = () => {
                       <input type="checkbox" />
                     </td>
                     <td>
-                      Heating Kit: 15 to 32V: 450mA: For Reflector of Reflected Beam Smoke Detectors
+                      Heating Kit: 15 to 32V: 450mA: For Reflector of Reflected
+                      Beam Smoke Detectors
                     </td>
                     <td>
-                      <Link
-                       // href={`/PipPage/${"BEAMHKR"}`}
-                       href={ userLoggedIn === "true" ? `/PipPage/${"BEAMHKR"}` : "#"} 
-                      >
-                        ORDER ONLINE
-                      </Link>
+                      {userLoggedIn === "true" && (
+                        <Link
+                          // href={`/PipPage/${"BEAMHKR"}`}
+                          href={
+                            userLoggedIn === "true"
+                              ? `/PipPage/${"BEAMHKR"}`
+                              : "#"
+                          }
+                        >
+                          ORDER ONLINE
+                        </Link>
+                      )}
                     </td>
                   </tr>
                   <tr>
@@ -163,12 +176,18 @@ const Pdp = () => {
                     </td>
                     <td>Heater kit for Beam detector</td>
                     <td>
-                      <Link
-                       // href={`/PipPage/${"BEAMHK"}`}
-                        href={ userLoggedIn === "true" ? `/PipPage/${"BEAMHK"}` : "#"} 
-                      >
-                        ORDER ONLINE
-                      </Link>
+                      {userLoggedIn === "true" && (
+                        <Link
+                          // href={`/PipPage/${"BEAMHK"}`}
+                          href={
+                            userLoggedIn === "true"
+                              ? `/PipPage/${"BEAMHK"}`
+                              : "#"
+                          }
+                        >
+                          ORDER ONLINE
+                        </Link>
+                      )}
                     </td>
                   </tr>
                 </tbody>

@@ -84,9 +84,11 @@ const Pdp_XAL = () => {
               <div className="product-overview-pdp">
                 <div className="button-section">
                   <button>CONTACT US</button>
-                  <button onClick={() => handleTabClick("SKU")}>
-                    BUY ONLINE
-                  </button>
+                  {userLoggedIn === "true" && (
+                    <button onClick={() => handleTabClick("SKU")}>
+                      BUY ONLINE
+                    </button>
+                  )}
                   <button>FIND A PARTNER</button>
                 </div>
                 <p className="product-desc-info">
@@ -138,7 +140,6 @@ const Pdp_XAL = () => {
                     <td></td>
                     <td></td>
                   </tr>
-                 
                 </tbody>
               </table>
             </div>
@@ -161,20 +162,20 @@ const Pdp_XAL = () => {
                     <td>
                       <input type="checkbox" />
                     </td>
+                    <td>Hazardous Location Pull Station, NO and NC Contacts</td>
                     <td>
-                    Hazardous Location Pull Station, NO and NC Contacts
-                    </td>
-                    <td>
-                      <Link
-                        // href={`/PipPage/${"BEAMHKR"}`}
-                        href={
-                          userLoggedIn === "true"
-                            ? `/PipPage/${"XAL-53"}`
-                            : "#"
-                        }
-                      >
-                        ORDER ONLINE
-                      </Link>
+                      {userLoggedIn === "true" && (
+                        <Link
+                          // href={`/PipPage/${"BEAMHKR"}`}
+                          href={
+                            userLoggedIn === "true"
+                              ? `/PipPage/${"XAL-53"}`
+                              : "#"
+                          }
+                        >
+                          ORDER ONLINE
+                        </Link>
+                      )}
                     </td>
                   </tr>
                 </tbody>

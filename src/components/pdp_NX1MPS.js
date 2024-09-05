@@ -8,7 +8,7 @@ const Pdp_NX1MPS = () => {
   useEffect(() => {
     const loggedInStatus = localStorage.getItem("userLoggedIn");
     setUserLoggedIn(loggedInStatus);
-  }, []); 
+  }, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -21,7 +21,9 @@ const Pdp_NX1MPS = () => {
           <b className="">Control Panels</b>
           <h1 className="">NX1MPS Metal Enclosure Starter Kit</h1>
           <p className="">
-          NX1MPS metal enclosure starter kits are for NetAXS-123™ web-based access control systems and includes a 4A power supply and 7 AH battery backup.
+            NX1MPS metal enclosure starter kits are for NetAXS-123™ web-based
+            access control systems and includes a 4A power supply and 7 AH
+            battery backup.
           </p>
         </div>
       </div>
@@ -81,13 +83,17 @@ const Pdp_NX1MPS = () => {
               <div className="product-overview-pdp">
                 <div className="button-section">
                   <button>CONTACT US</button>
-                  <button onClick={() => handleTabClick("SKU")}>
-                    BUY ONLINE
-                  </button>
+                  {userLoggedIn === "true" && (
+                    <button onClick={() => handleTabClick("SKU")}>
+                      BUY ONLINE
+                    </button>
+                  )}
                   <button>FIND A PARTNER</button>
                 </div>
                 <p className="product-desc-info">
-                NX1MPS metal enclosure starter kits are for NetAXS-123™ web-based access control systems and includes a 4A power supply and 7 AH battery backup.
+                  NX1MPS metal enclosure starter kits are for NetAXS-123™
+                  web-based access control systems and includes a 4A power
+                  supply and 7 AH battery backup.
                 </p>
               </div>
             </>
@@ -103,18 +109,7 @@ const Pdp_NX1MPS = () => {
                     <td className="resources-table-headers">SIZE</td>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
           )}
@@ -137,40 +132,43 @@ const Pdp_NX1MPS = () => {
                       <input type="checkbox" />
                     </td>
                     <td>
-                    Security Control Panel, 1 Door, Metal Enclosure, 4A Power Supply and 12V, 7 AH Battery Backup
+                      Security Control Panel, 1 Door, Metal Enclosure, 4A Power
+                      Supply and 12V, 7 AH Battery Backup
                     </td>
                     <td>
-                      <Link
-                        href={
-                          userLoggedIn === "true"
-                            ? `/PipPage/${"NX1MPS10"}`
-                            : ""
-                        }
-                      >
-                        ORDER ONLINE
-                      </Link>
+                      {userLoggedIn === "true" && (
+                        <Link
+                          href={
+                            userLoggedIn === "true"
+                              ? `/PipPage/${"NX1MPS10"}`
+                              : ""
+                          }
+                        >
+                          ORDER ONLINE
+                        </Link>
+                      )}
                     </td>
                   </tr>
-                  
+
                   <tr>
                     <td>NX1MPS30</td>
                     <td>
                       <input type="checkbox" />
                     </td>
+                    <td>NETAXS123:1DR,STANDMETAL OP30</td>
                     <td>
-                    NETAXS123:1DR,STANDMETAL OP30
-                    </td>
-                    <td>
-                      <Link
-                        // href={`/PipPage/${"BEAMHKR"}`}
-                        href={
-                          userLoggedIn === "true"
-                            ? `/PipPage/${"NX1MPS30"}`
-                            : ""
-                        }
-                      >
-                        ORDER ONLINE
-                      </Link>
+                      {userLoggedIn === "true" && (
+                        <Link
+                          // href={`/PipPage/${"BEAMHKR"}`}
+                          href={
+                            userLoggedIn === "true"
+                              ? `/PipPage/${"NX1MPS30"}`
+                              : ""
+                          }
+                        >
+                          ORDER ONLINE
+                        </Link>
+                      )}
                     </td>
                   </tr>
 
@@ -179,22 +177,21 @@ const Pdp_NX1MPS = () => {
                     <td>
                       <input type="checkbox" />
                     </td>
+                    <td>NETAXS123:1DR,STANDMETAL OP30</td>
                     <td>
-                    NETAXS123:1DR,STANDMETAL OP30
-                    </td>
-                    <td>
-                      <Link
-                        href={
-                          userLoggedIn === "true"
-                            ? `/PipPage/${"NX1MPS40"}`
-                            : ""
-                        }
-                      >
-                        ORDER ONLINE
-                      </Link>
+                      {userLoggedIn === "true" && (
+                        <Link
+                          href={
+                            userLoggedIn === "true"
+                              ? `/PipPage/${"NX1MPS40"}`
+                              : ""
+                          }
+                        >
+                          ORDER ONLINE
+                        </Link>
+                      )}
                     </td>
                   </tr>
-                  
                 </tbody>
               </table>
             </div>

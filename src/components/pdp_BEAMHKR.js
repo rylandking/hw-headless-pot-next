@@ -8,7 +8,7 @@ const Pdp_BEAMKHKR = () => {
   useEffect(() => {
     const loggedInStatus = localStorage.getItem("userLoggedIn");
     setUserLoggedIn(loggedInStatus);
-  }, []); 
+  }, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -21,7 +21,7 @@ const Pdp_BEAMKHKR = () => {
           <b className="">Accessories</b>
           <h1 className="">Linear smoke detector</h1>
           <p className="">
-          Notifier intelligent reflective graphic linear beam detector
+            Notifier intelligent reflective graphic linear beam detector
           </p>
         </div>
       </div>
@@ -81,13 +81,15 @@ const Pdp_BEAMKHKR = () => {
               <div className="product-overview-pdp">
                 <div className="button-section">
                   <button>CONTACT US</button>
-                  <button onClick={() => handleTabClick("SKU")}>
-                    BUY ONLINE
-                  </button>
+                  {userLoggedIn === "true" && (
+                    <button onClick={() => handleTabClick("SKU")}>
+                      BUY ONLINE
+                    </button>
+                  )}
                   <button>FIND A PARTNER</button>
                 </div>
                 <p className="product-desc-info">
-                Notifier intelligent reflective image linear beam detector
+                  Notifier intelligent reflective image linear beam detector
                 </p>
               </div>
             </>
@@ -103,18 +105,7 @@ const Pdp_BEAMKHKR = () => {
                     <td className="resources-table-headers">SIZE</td>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
           )}
@@ -136,31 +127,29 @@ const Pdp_BEAMKHKR = () => {
                     <td>
                       <input type="checkbox" />
                     </td>
+                    <td>Long Range Reflector Kit, 70 to 100m Range</td>
                     <td>
-                    Long Range Reflector Kit, 70 to 100m Range
-                    </td>
-                    <td>
-                      <Link
-                        // href={`/PipPage/${"BEAMHKR"}`}
-                        href={
-                          userLoggedIn === "true"
-                            ? `/PipPage/${"BEAMLRK"}`
-                            : "#"
-                        }
-                      >
-                        ORDER ONLINE
-                      </Link>
+                      {userLoggedIn === "true" && (
+                        <Link
+                          // href={`/PipPage/${"BEAMHKR"}`}
+                          href={
+                            userLoggedIn === "true"
+                              ? `/PipPage/${"BEAMLRK"}`
+                              : "#"
+                          }
+                        >
+                          ORDER ONLINE
+                        </Link>
+                      )}
                     </td>
                   </tr>
-                  
+
                   <tr>
                     <td>BEAMMMK</td>
                     <td>
                       <input type="checkbox" />
                     </td>
-                    <td>
-                    Access Multi Mount Kit
-                    </td>
+                    <td>Access Multi Mount Kit</td>
                     <td>
                       <Link
                         // href={`/PipPage/${"BEAMHKR"}`}
@@ -181,21 +170,23 @@ const Pdp_BEAMKHKR = () => {
                       <input type="checkbox" />
                     </td>
                     <td>
-                    Surface mounting kit for use with Reflective Projected Beam Smoke Detectors
+                      Surface mounting kit for use with Reflective Projected
+                      Beam Smoke Detectors
                     </td>
                     <td>
-                      <Link
-                        href={
-                          userLoggedIn === "true"
-                            ? `/PipPage/${"BEAMSMK"}`
-                            : "#"
-                        }
-                      >
-                        ORDER ONLINE
-                      </Link>
+                      {userLoggedIn === "true" && (
+                        <Link
+                          href={
+                            userLoggedIn === "true"
+                              ? `/PipPage/${"BEAMSMK"}`
+                              : "#"
+                          }
+                        >
+                          ORDER ONLINE
+                        </Link>
+                      )}
                     </td>
                   </tr>
-                  
                 </tbody>
               </table>
             </div>
