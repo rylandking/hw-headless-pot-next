@@ -598,7 +598,7 @@ li a img {
   padding: 70px 0px;
   background-color: #f7f7f7;
 }
-.text-1{
+.text-1, .text-2 {
   text-align: left;
   color: #303030;
   margin-top: 5px;
