@@ -27,7 +27,7 @@ const SearchBar = ({setToggleSearchBox}) => {
     <div className="search-page">
         <div className='text-1'>
         <h3>Search By</h3>
-        <span onClick={handleonClick}> <Image src={Close} alt="Honeywell close icon" className="close-icon"/></span>
+        <span onClick={handleonClick}> <Image src={Close} alt="Honeywell close icon" className="close-icon" width={15}/></span>
         </div>
 
         <div className='search-container'>
