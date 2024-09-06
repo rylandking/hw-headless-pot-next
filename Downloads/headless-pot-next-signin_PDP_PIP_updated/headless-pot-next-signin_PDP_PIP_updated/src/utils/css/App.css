@@ -834,7 +834,8 @@ li a img {
   .close-icon{
     fill: white;
   width: 15px;
-  margin-right: 2.5rem;
+    margin-right: 1.75rem;
+    cursor: pointer;
   }
 
   
