@@ -1,4 +1,4 @@
-import '../utils/css/App.css';
+import '../utils/css/app.css';
 import '../utils/css/Breadcrumb.css';
 import '../utils/css/CardSection3.css';
 import '../utils/css/dropdownmodel.css';
