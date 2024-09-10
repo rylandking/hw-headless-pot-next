@@ -1,18 +1,9 @@
 {
-<<<<<<< HEAD
-=======
-  
->>>>>>> fa44dbca6d338fdae2d85d325b9c809f5668e0db
     "builds": [
       {
         "src": "package.json",
         "use": "@vercel/next"
       }
     ]
-<<<<<<< HEAD
-  }
-=======
   
- 
-}
->>>>>>> fa44dbca6d338fdae2d85d325b9c809f5668e0db
+  }

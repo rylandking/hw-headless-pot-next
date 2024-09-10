@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server1.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server1.js"
+    "dev": "next dev",
+    "build": "next build && next dev",
+    "start": "next start"
   },
   "dependencies": {
     "@builder.io/react": "^5.0.1",
@@ -24,6 +24,7 @@
     "link": "^2.1.1",
     "material-symbols": "^0.21.2",
     "next": "14.2.5",
+    "normalize.css": "^8.0.1",
     "react": "^18",
     "react-dom": "^18",
     "react-router-dom": "^6.25.1",

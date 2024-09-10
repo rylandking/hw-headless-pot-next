@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 //import "../utils/css/SearchBarW.css";
+//import "../App.css"
 import Close from  '../utils/icons/close.svg';
 import Magnify from '../utils/icons/magify.svg';
 import Link from 'next/link';
@@ -27,7 +28,7 @@ const SearchBar = ({setToggleSearchBox}) => {
     <div className="search-page">
         <div className='text-1'>
         <h3>Search By</h3>
-        <span onClick={handleonClick}> <Image src={Close} alt="Honeywell close icon" className="close-icon"/></span>
+        <span onClick={handleonClick}> <Image src={Close} alt="Honeywell close icon" className="close-icon" width={15}/></span>
         </div>
 
         <div className='search-container'>

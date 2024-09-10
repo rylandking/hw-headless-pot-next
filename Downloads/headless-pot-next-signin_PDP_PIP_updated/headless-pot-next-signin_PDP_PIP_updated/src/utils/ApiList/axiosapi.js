@@ -1,5 +1,6 @@
-//const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000';
-const baseUrl = "";
+//const baseUrl = 'http://localhost:3000/api/proxy';
+//const baseUrl = "";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''; // Default to an empty string if not set
 const contactApi = `${baseUrl}/pif/api/account/v1/get-contact-details?appId=239`;
 const detailsApi = `${baseUrl}/pif/api/session/details?appId=239`;
 const toolsApi = `${baseUrl}/pif/api/tools/v1/get-tools?appId=239`;

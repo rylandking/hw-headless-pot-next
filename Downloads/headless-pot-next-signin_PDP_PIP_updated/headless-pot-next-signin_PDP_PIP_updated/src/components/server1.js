@@ -6,6 +6,7 @@ const { parse } = require('url');
 
 // Utility function to parse cookies
 const parseCookies = (cookieString) => {
+  console.log('Parsing cookies:', cookieString);
   return cookieString
     .split(';')
     .map(cookie => cookie.trim())
@@ -78,7 +79,7 @@ const generateBinderToken = async () => {
 
 const requestListener = async(req, res) => {
   const { method, headers, url } = req;
-  const basePath = '/server1'; // Adjust this based on your setup
+  const basePath = 'server1/'; // Adjust this based on your setup
   const parsedUrl = parse(url);
   const apiPath = parsedUrl.pathname.replace(basePath, '');
   const queryString = parsedUrl.query ? '?' + parsedUrl.query : '';
@@ -88,7 +89,7 @@ const requestListener = async(req, res) => {
   // Get cookies from the headers
   const cookies = headers.cookie ? parseCookies(headers.cookie) : {};
   // Access specific cookies
-  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICI2MmI5YTYyMy0wOGU5LTQzYzktOGYyOC04M2I0NGU1ODY3YzkiLAogICJzdWIiIDogImIyNTcxODE4LTI0OTgtNDIzMS04ODQwLTM0NWU4NTM4Mzg1MiIsCiAgImlhdCIgOiAxNzIzODA1OTg1LAogICJleHAiIDogMTcyMzgwNzc4NQp9.KEr3R8cWex__MRs273I-Q0-uHd324JgT1_rwKq71XAY2b_ahLKaPA24mA3z2UH3x1of37NKQ_jem0YOxB016ucwLUFCJuQCSPSptuUK2Dtoe45oDCbHxctfWu-BV9k81RCBBQZ0-x0jGjCACTWfwWGv5LxPdUH_qNpIy4T13MEKHOLkTbtGWJZBu9Cd9l_9LI5-seNvsm3oih5ne3M0aQzaOpl_dRyOhTaxT86BUXCL2yddqS9QuDotk3-0OJmXcUatNFLlURhwYxz0gtFivLtLc-MWOSLJkSkVLDGRj5-_BIJQtZF_37r0WschnwSaQE1Ufw4oZ8fG7pcaqkINKuw";
+  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICJlNGQwMzUyMy03MDExLTRiMmEtODk4OS0zZDk5ZTZhNjFhYTkiLAogICJzdWIiIDogImM4YWM4ZWU1LTU3NzQtNDI1Ny1hNzc4LTIyMWUyNzI0ZTZmZSIsCiAgImlhdCIgOiAxNzI1NDU0NjIyLAogICJleHAiIDogMTcyNTQ1NjQyMgp9.fm-TdqCUNO8DwquVd9_HcxkDHr-SoD6YlcxCzC2cG-uNJAIPhssGNFYolCmrC0-eJjMDqEn6n6qDm4Grb-UXlWeiv52JMnxmXG_3jAUc4demUphaw8beF-8rAcfZXfIC_yJpDQn_33RnIikvHHyhl7GEoqUg_IR36yc-DOVKA4dMEKGuJ05aSVQ4y_CJzPItQZYkpPheP8JdikiCZQjYQpd2xHdZmnzf35E5j_AEqxg49g4z120NQZgYU19q0QWctYBAYnoGMYRn0TzsPMN6Vtr9vHmqnlL98bfOvk3ZrJVSk0WSeFODCdw62R82wHDwI8H8tMKz9BDgvajBKwU8FA";
 
   if (apiPath.includes("/pif/")) {
     if (method === 'OPTIONS') {

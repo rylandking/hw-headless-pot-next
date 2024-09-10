@@ -1,5 +1,4 @@
-@import url("./utils/css/pip.css");
-@import url("./utils/css/pdp.css");
+
 * {
   font-family: "Honeywell Sans", Helvetica, Arial, sans-serif !important;
 }
@@ -126,6 +125,12 @@ h2 {
   display: flex;
   align-items: center;
 }
+
+.search-icon2 {
+  width: 30px;
+  height: 30px;
+}
+
 
 .search-icon {
   width: 24px;
@@ -600,6 +605,7 @@ li a img {
   background-color: #f7f7f7;
 }
 
+
 .text-1,
 .text-2 {
   text-align: center;
@@ -835,6 +841,14 @@ li a img {
     fill: white;
   width: 15px;
   margin-right: 2.5rem;
+  cursor: pointer;
+  
+.close-icon{
+  fill: white;
+width: 15px;
+margin-right: 1.75rem;
+cursor: pointer;
+}
   }
 
   
