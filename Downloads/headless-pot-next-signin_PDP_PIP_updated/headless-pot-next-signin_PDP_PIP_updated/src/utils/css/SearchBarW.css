@@ -62,22 +62,22 @@
 }
 
 .select-picker {
-  color: rgb(100, 100, 100);
-  cursor: pointer;
-  font-size: 18px;
-  padding: 15px 30px 10px 15px; /* top-right-bottom-left */
-  height: 56px;
-  border-width: 1px;
-  border-color: rgb(220, 220, 220);
-  border-style: solid;
-  border-radius: 4px;
-  width: 22vw;
-  appearance: none; 
-  background-color: white;
-  background-image: url('../icons/caratdown.svg');
-  background-repeat: no-repeat;
-  background-position: right 10px center; 
-  background-size: 20px 20px;
+  color: rgb(100, 100, 100) !important;
+  cursor: pointer !important;
+  font-size: 18px !important;
+  padding: 15px 30px 10px 15px !important; /* top-right-bottom-left */
+  height: 56px !important;
+  border-width: 1px !important;
+  border-color: rgb(220, 220, 220) !important;
+  border-style: solid !important;
+  border-radius: 4px !important;
+  width: 22vw !important;
+  appearance: none !important; 
+  background-color: white !important;
+  background-image: url('../icons/caratdown.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: right 10px center !important; 
+  background-size: 20px 20px !important;
 }
 
 .select-picker:focus {
