@@ -49,11 +49,10 @@ const SearchBar = ({setToggleSearchBox}) => {
           placeholder={searchPlaceHolder}
           
         />
-        <button className='search-btn' onClick={handleonClick}>
-          <Link href="/search">
-          <Image src={Magnify} alt="search-icon" className='search-icon'/>
-          </Link>
-          </button>
+             <div onClick={() => router.push('/search')} className='search-btn'>
+  <Image src={Magnify} alt="search-icon" className='search-icon' />
+</div>
+        
         </div>
         </div>
 

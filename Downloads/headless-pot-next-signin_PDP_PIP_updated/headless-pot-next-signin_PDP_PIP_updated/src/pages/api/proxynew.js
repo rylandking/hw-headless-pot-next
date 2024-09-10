@@ -78,7 +78,11 @@ export default async function handler(req, res) {
   console.log('Proxy handler invoked:', req.url);
   const { method, headers, url } = req;
   const parsedUrl = parse(url);
+<<<<<<< HEAD:Downloads/headless-pot-next-signin_PDP_PIP_updated/headless-pot-next-signin_PDP_PIP_updated/src/pages/api/proxynew.js
   const basePath = '/api/proxynew';
+=======
+  const basePath = '/api/proxy';
+>>>>>>> ff1d38f6e3628214a47726b63c2baf8948fb4e06:Downloads/headless-pot-next-signin_PDP_PIP_updated/headless-pot-next-signin_PDP_PIP_updated/src/pages/api/proxy.js
   const apiPath = parsedUrl.pathname.replace(basePath, '');
   const queryString = parsedUrl.query ? '?' + parsedUrl.query : '';
   const fullUrl = `${apiPath}${queryString}`;
