@@ -703,16 +703,16 @@ li a img {
 
 @media (min-width: 1025px) and (max-width: 1129px) {
   .navSection {
-    margin: 1.5em 1em;
+    margin: 1.5em 1em !important;
   }
   header.bottom-nav {
-    flex-direction: column;
+    flex-direction: column !important;
   }
 }
 
 @media (min-width: 1130px) {
   header.bottom-nav {
-    flex-direction: row;
+    flex-direction: row !important;
   }
 }
 
