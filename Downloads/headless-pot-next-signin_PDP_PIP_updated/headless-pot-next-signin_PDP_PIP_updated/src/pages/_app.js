@@ -14,6 +14,7 @@ import '../utils/css/Testingdrop.css';
 import Layout from './Layout.js';
 import '../utils/css/pip.css';
 //import '../utils/css/NavBars.css';
+import 'normalize.css';
 
 function MyApp({ Component, pageProps }) {
     return (
