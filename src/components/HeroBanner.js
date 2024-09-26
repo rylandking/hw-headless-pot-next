@@ -3,7 +3,7 @@ import useBuilder_io from "../customHook/useBuilder_io";
 
 export default function HeroBanner(props) {
     const builderData = useBuilder_io();
-    console.log("builderData", builderData);
+    console.log("builder component Data ", builderData);
 
     // Access the data from builderData safely
     //const bannerImage = builderData?.data?.heroBanner?.bannerImage?.secure_url;
