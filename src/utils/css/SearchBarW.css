@@ -16,7 +16,7 @@
   color: #303030;
   margin-top: 5px;
   font-size: 11px;
-  font-family: HoneywellSans-Medium;
+/*  font-family: HoneywellSans-Medium; */
   text-transform: uppercase;
   display: flex;
   justify-content: space-between;
@@ -72,11 +72,11 @@
   border-style: solid;
   border-radius: 4px;
   width: 22vw;
-  appearance: none; 
+  appearance: none;
   background-color: white;
   background-image: url('../icons/caratdown.svg');
   background-repeat: no-repeat;
-  background-position: right 10px center; 
+  background-position: right 10px center;
   background-size: 20px 20px;
 }
 
@@ -99,8 +99,8 @@ cursor: pointer;
 .search-btn{
   position: absolute;
     top: 36%;
-    border: 1px solid blue;  
-    position: absolute; 
+    border: 1px solid blue;
+    position: absolute;
     font-size: 22px !important;
     outline: 0;
     background: #0071b3;
