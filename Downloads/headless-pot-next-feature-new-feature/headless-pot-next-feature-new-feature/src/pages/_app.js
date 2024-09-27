@@ -16,6 +16,7 @@ import '../utils/css/Testingdrop.css';
 import Layout from './Layout.js';
 import '../utils/css/pip.css';
 //import '../utils/css/NavBars.css';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
     return (
