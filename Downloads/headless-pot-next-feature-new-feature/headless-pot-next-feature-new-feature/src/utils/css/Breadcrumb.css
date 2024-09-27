@@ -676,7 +676,7 @@
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 20px 20px;
-    background-image: url('../utils/icons/caratdown.svg'); /* Default to CaratDown */
+    background-image: url('../icons/caratdown.svg'); /* Default to CaratDown */
   }
   
   .select-picker2:focus {
@@ -774,7 +774,7 @@
     width: 22vw;
     appearance: none; 
     background-color: white;
-    background-image: url('../utils/icons/caratdown.svg');
+    background-image: url('../icons/caratdown.svg');
     background-repeat: no-repeat;
     background-position: right 10px center; 
     background-size: 20px 20px;
