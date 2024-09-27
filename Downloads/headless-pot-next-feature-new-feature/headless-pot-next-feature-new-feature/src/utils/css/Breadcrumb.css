@@ -43,3 +43,13 @@
     white-space: nowrap; 
     font-family: HoneywellSans-Medium;
 }
+
+.search-page2 {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    background-color: rgb(64, 64, 64);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
