@@ -20,6 +20,9 @@ import '../utils/css/pip.css';
 function MyApp({ Component, pageProps }) {
     return (
         <Layout detailData={pageProps.detailData} contactData={pageProps.contactData} error={pageProps.error}>
+             <Head>
+        <title>Honeywell Building Automation</title> {/* This will be used if no title is set on individual pages */}
+      </Head>
             <Component {...pageProps} />
         </Layout>
     );
