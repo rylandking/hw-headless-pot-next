@@ -1,30 +1,22 @@
 import React from 'react';
-//import useContentStackApi from '../customHook/ContentStackApi'; 
-import useBuilder_io from "../customHook/useBuilder_io"; 
+import useContentStackApi from '../customHook/ContentStackApi'; // Adjust the path accordingly
+//import '../utils/css/home.css';
+
 const ImageBanner = () => {
   // Fetch data using the custom hook
-  const builderData = useBuilder_io();
+  const contentData = useContentStackApi();
   
-  // Check if builderData is available and contains imageBanner data
-  const imageBanner = builderData?.data?.imageBanner;
-
-  // Log the imageBanner object to debug
-  console.log("ImageBanner Data:", imageBanner);
+  // Check if contentData is available and has imagebanner
+  const imageBanner = contentData?.find((item) => item.imagebanner);
 
   // If the data isn't loaded yet, show a loading state
   if (!imageBanner) {
     return <div>Loading...</div>;
   }
 
-  const {
-    eyebrow = '',
-    description = '',
-    imageBannerImage = {},
-    title = '',
-    referenceLink = {}
-  } = imageBanner;
-
-  const imageUrl = imageBannerImage.secure_url || '';
+  // Destructure necessary data from imageBanner
+  const { title, imagebanner_image, eyebrow, description, reference_link,imageWidth,imageHeight } = imageBanner.imagebanner;
+  const imageUrl = imagebanner_image[0]?.secure_url || '';
 
   return (
     <div className="ImageBanner" id="div-1">
@@ -35,8 +27,8 @@ const ImageBanner = () => {
               src={imageUrl}
               alt={title}
               className="banner-image"
-              width={imageBannerImage.width || 'auto'} 
-              height={imageBannerImage.height || 'auto'}
+              //width={imageWidth}
+              //height={imageHeight}
             />
           </div>
         </div>
@@ -49,8 +41,8 @@ const ImageBanner = () => {
           <p id="p-1" dangerouslySetInnerHTML={{ __html: description }}></p>
         </div>
         <div className="cta">
-          <a href={referenceLink.url} target="_blank" rel="noopener noreferrer">
-            {referenceLink.title}
+          <a href={reference_link.href} target="_blank" rel="noopener noreferrer">
+            {reference_link.title}
           </a>
         </div>
       </div>

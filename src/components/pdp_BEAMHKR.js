@@ -1,18 +1,14 @@
-import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import Save from "../utils/icons/save.svg";
 
-const Pdp = () => {
+const Pdp_BEAMKHKR = () => {
   const [activeTab, setActiveTab] = useState("Overview");
   const [userLoggedIn, setUserLoggedIn] = useState(null);
 
   useEffect(() => {
-    // This code runs only on the client side
     const loggedInStatus = localStorage.getItem("userLoggedIn");
     setUserLoggedIn(loggedInStatus);
-  }, []); // Empty dependency array ensures this runs once on component mount
+  }, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -23,12 +19,9 @@ const Pdp = () => {
       <div className="product-title">
         <div className="products-title-info">
           <b className="">Accessories</b>
-          <h1 className="">BEAM1224 Heating Kit</h1>
+          <h1 className="">Linear smoke detector</h1>
           <p className="">
-            Heating kits for use to prevent condensation with the BEAM1224
-            conventional beam smoke detectors. They lessen the likelihood of
-            condensation by maintaining the unit at a temperature that is
-            slightly higher than the surrounding air.
+            Notifier intelligent reflective graphic linear beam detector
           </p>
         </div>
       </div>
@@ -63,17 +56,17 @@ const Pdp = () => {
               <div className="image-side">
                 <div className="images">
                   <img
-                    src="https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes"
-                    alt="BEAMHK Heating Kit"
+                    src="https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMMMK-RIGHT-HiRes"
+                    alt="HBT-Fire-BEAMMMK"
                     className="beamhk-image-1"
                   />
                   <div className="beamhk-image">
                     {[...Array(4)].map((_, i) => (
                       <img
                         key={i}
-                        src="https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes"
+                        src="https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMLRK-STRAIGHT-HiRes"
                         className="beamhk-image-2"
-                        alt="BEAMHK Heating Kit"
+                        alt="HBT-Fire-BEAMMMK"
                       />
                     ))}
                   </div>
@@ -96,13 +89,8 @@ const Pdp = () => {
                   <button>FIND A PARTNER</button>
                 </div>
                 <p className="product-desc-info">
-                  Heating kits for use to prevent condensation with the BEAM1224
-                  conventional beam smoke detectors. They lessen the likelihood
-                  of condensation by maintaining the unit at a temperature that
-                  is slightly higher than the surrounding air.
+                  Notifier intelligent reflective image linear beam detector
                 </p>
-                <b> Features & Benefits:</b>
-                <p>To prevent condensation on the optical surface</p>
               </div>
             </>
           )}
@@ -117,18 +105,7 @@ const Pdp = () => {
                     <td className="resources-table-headers">SIZE</td>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>BEAMHK Heating Kit-Installation Manual</td>
-                    <td>5/10/2023</td>
-                    <td>591.04 KB</td>
-                  </tr>
-                  <tr>
-                    <td>OSI-R-SS Datasheet</td>
-                    <td>4/2/2022</td>
-                    <td>258.57 KB</td>
-                  </tr>
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
           )}
@@ -146,21 +123,18 @@ const Pdp = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>BEAMHKR</td>
+                    <td>BEAMLRK</td>
                     <td>
                       <input type="checkbox" />
                     </td>
-                    <td>
-                      Heating Kit: 15 to 32V: 450mA: For Reflector of Reflected
-                      Beam Smoke Detectors
-                    </td>
+                    <td>Long Range Reflector Kit, 70 to 100m Range</td>
                     <td>
                       {userLoggedIn === "true" && (
                         <Link
                           // href={`/PipPage/${"BEAMHKR"}`}
                           href={
                             userLoggedIn === "true"
-                              ? `/PipPage/${"BEAMHKR"}`
+                              ? `/PipPage/${"BEAMLRK"}`
                               : "#"
                           }
                         >
@@ -169,19 +143,42 @@ const Pdp = () => {
                       )}
                     </td>
                   </tr>
+
                   <tr>
-                    <td>BEAMHK</td>
+                    <td>BEAMMMK</td>
                     <td>
                       <input type="checkbox" />
                     </td>
-                    <td>Heater kit for Beam detector</td>
+                    <td>Access Multi Mount Kit</td>
+                    <td>
+                      <Link
+                        // href={`/PipPage/${"BEAMHKR"}`}
+                        href={
+                          userLoggedIn === "true"
+                            ? `/PipPage/${"BEAMMMK"}`
+                            : "#"
+                        }
+                      >
+                        ORDER ONLINE
+                      </Link>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>BEAMSMK</td>
+                    <td>
+                      <input type="checkbox" />
+                    </td>
+                    <td>
+                      Surface mounting kit for use with Reflective Projected
+                      Beam Smoke Detectors
+                    </td>
                     <td>
                       {userLoggedIn === "true" && (
                         <Link
-                          // href={`/PipPage/${"BEAMHK"}`}
                           href={
                             userLoggedIn === "true"
-                              ? `/PipPage/${"BEAMHK"}`
+                              ? `/PipPage/${"BEAMSMK"}`
                               : "#"
                           }
                         >
@@ -200,4 +197,4 @@ const Pdp = () => {
   );
 };
 
-export default Pdp;
+export default Pdp_BEAMKHKR;

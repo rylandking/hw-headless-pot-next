@@ -1,10 +1,7 @@
-import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import Save from "../utils/icons/save.svg";
 
-const Pdp = () => {
+const Pdp_XAL = () => {
   const [activeTab, setActiveTab] = useState("Overview");
   const [userLoggedIn, setUserLoggedIn] = useState(null);
 
@@ -22,13 +19,12 @@ const Pdp = () => {
     <div className="main-content">
       <div className="product-title">
         <div className="products-title-info">
-          <b className="">Accessories</b>
-          <h1 className="">BEAM1224 Heating Kit</h1>
+          <b className="">Manual Call Points/Pull Station </b>
+          <h1 className="">KILLARK® XAL-53 Explosion-Proof Pull Station</h1>
           <p className="">
-            Heating kits for use to prevent condensation with the BEAM1224
-            conventional beam smoke detectors. They lessen the likelihood of
-            condensation by maintaining the unit at a temperature that is
-            slightly higher than the surrounding air.
+            KILLARK® XAL-53 explosion-proof pull stations are suitable for use
+            in hazardous areas due to the presence of flammable gases or vapors,
+            combustible dust, or easily ignitable fibers.
           </p>
         </div>
       </div>
@@ -63,17 +59,17 @@ const Pdp = () => {
               <div className="image-side">
                 <div className="images">
                   <img
-                    src="https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes"
-                    alt="BEAMHK Heating Kit"
+                    src="https://s7d1.scene7.com/is/image/Honeywell65/hbt-Fire-P1909008-primaryimage"
+                    alt="hbt-Fire-P1909008"
                     className="beamhk-image-1"
                   />
                   <div className="beamhk-image">
                     {[...Array(4)].map((_, i) => (
                       <img
                         key={i}
-                        src="https://honeywell.scene7.com/is/image/Honeywell65/HBT-Fire-BEAMHK-STRAIGHT-HiRes"
+                        src="https://s7d1.scene7.com/is/image/Honeywell65/hbt-Fire-P1909008-primaryimage"
                         className="beamhk-image-2"
-                        alt="BEAMHK Heating Kit"
+                        alt="hbt-Fire-P1909008"
                       />
                     ))}
                   </div>
@@ -96,13 +92,34 @@ const Pdp = () => {
                   <button>FIND A PARTNER</button>
                 </div>
                 <p className="product-desc-info">
-                  Heating kits for use to prevent condensation with the BEAM1224
-                  conventional beam smoke detectors. They lessen the likelihood
-                  of condensation by maintaining the unit at a temperature that
-                  is slightly higher than the surrounding air.
+                  KILLARK® XAL-53 explosion-proof pull stations are suitable for
+                  use in hazardous areas due to the presence of flammable gases
+                  or vapors, combustible dust, or easily ignitable fibers.
+                  Typical applications for this product include petroleum
+                  refineries, chemical and petrochemical plants, storage areas,
+                  and other processing facilities where hazardous substances are
+                  handled and stored.
                 </p>
                 <b> Features & Benefits:</b>
+
                 <p>To prevent condensation on the optical surface</p>
+                <p>Enclosure is made of copper-free aluminum alloy</p>
+                <p>
+                  Red, textured powder epoxy paint finish is standard on box and
+                  cover and provides high visibility for alarm station
+                </p>
+                <p>
+                  Universal normally open (one) and normally closed (one)
+                  contact furnished standard
+                </p>
+                <p>Bilingual nameplates included per CSA requirement</p>
+                <p>Internal ground screw is standard</p>
+                <p>Wiring range is 24 through 12 AWG, solid or stranded</p>
+                <b> Certification:</b>
+                <p>UL Listed: E50498</p>
+                <p>ULC Listed: E50498</p>
+                <p>CSA: LR31085</p>
+                <p>CSFM: 7150-1439:100</p>
               </div>
             </>
           )}
@@ -119,14 +136,9 @@ const Pdp = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>BEAMHK Heating Kit-Installation Manual</td>
-                    <td>5/10/2023</td>
-                    <td>591.04 KB</td>
-                  </tr>
-                  <tr>
-                    <td>OSI-R-SS Datasheet</td>
-                    <td>4/2/2022</td>
-                    <td>258.57 KB</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                   </tr>
                 </tbody>
               </table>
@@ -146,42 +158,18 @@ const Pdp = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>BEAMHKR</td>
+                    <td>XAL-53</td>
                     <td>
                       <input type="checkbox" />
                     </td>
-                    <td>
-                      Heating Kit: 15 to 32V: 450mA: For Reflector of Reflected
-                      Beam Smoke Detectors
-                    </td>
+                    <td>Hazardous Location Pull Station, NO and NC Contacts</td>
                     <td>
                       {userLoggedIn === "true" && (
                         <Link
                           // href={`/PipPage/${"BEAMHKR"}`}
                           href={
                             userLoggedIn === "true"
-                              ? `/PipPage/${"BEAMHKR"}`
-                              : "#"
-                          }
-                        >
-                          ORDER ONLINE
-                        </Link>
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>BEAMHK</td>
-                    <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>Heater kit for Beam detector</td>
-                    <td>
-                      {userLoggedIn === "true" && (
-                        <Link
-                          // href={`/PipPage/${"BEAMHK"}`}
-                          href={
-                            userLoggedIn === "true"
-                              ? `/PipPage/${"BEAMHK"}`
+                              ? `/PipPage/${"XAL-53"}`
                               : "#"
                           }
                         >
@@ -200,4 +188,4 @@ const Pdp = () => {
   );
 };
 
-export default Pdp;
+export default Pdp_XAL;

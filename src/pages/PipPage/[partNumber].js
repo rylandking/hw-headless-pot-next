@@ -1,19 +1,13 @@
 import { useRouter } from 'next/router';
 import Pip from '../../components/pip';
 import { detailsApi, contactApi ,getAvailability, getPriceDetail, getProductDetail } from '../../utils/ApiList/axiosapi';
-//import NotFound from '../../components/NotFound';
 import usePdpApiCall from '../../customHook/usePdpApiCall';
 import axios from 'axios';
-//import { detailsApi, contactApi } from '../utils/ApiList/axiosapi';
 
-//const PipPage = () => {
   export default function PipPage({ detailData, contactData, error }) {
   const router = useRouter();
   const { partNumber } = router.query;
 
-  //if (!partNumber) {
-    //return <NotFound error="Product not found, check the path" />;
-  //}
 
   console.log('partNumber', partNumber);
 

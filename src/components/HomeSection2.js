@@ -1,38 +1,26 @@
 import React from 'react';
 import useContentStackApi from '../customHook/ContentStackApi'; // Adjust the path accordingly
 //import "../utils/css/home.css";
-import useBuilder_io from "../customHook/useBuilder_io";
 
 export default function HomeSection2() {
     const contentData = useContentStackApi();
-    const builderData = useBuilder_io();
 
     // Filter out the section component from the fetched data
     const sectionComponent = contentData.find(component => component.section);
-    //const sectionComponent = builderData.find(component => component.section);
     if (!sectionComponent) {
        return <div>Loading...</div>; // or a loading spinner if you prefer
     }
-    const header1 = builderData?.data?.section?.header;
-    const ctaButtons = builderData?.data?.section?.ctaButtons;
-    console.log("header1",header1);
-    console.log("ctaButtons",ctaButtons);
 
-   // const bannerHeader = builderData?.data?.heroBanner?.bannerHeader;
     const { header, cta_buttons } = sectionComponent.section;
 
     return (
         <div className="homesection2">
             <div className="container">
-                <div className="header" dangerouslySetInnerHTML={{ __html: header1 }}></div>
                 <div className="footer">
-                    {ctaButtons.map((button, index) => (
                         <a 
                             key={index} 
-                            href={button.button.url} 
                             className="button-primary"
                         >
-                            {button.button.title}
                         </a>
                     ))}
                 </div>

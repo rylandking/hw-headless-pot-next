@@ -18,7 +18,7 @@ const parseCookies = (cookieString) => {
 
 // Configuration
 const NEXTJS_PORT = 3000; // Port where Next.js server is running
-const PROXY_PORT = 4000; // Port where proxy server will run
+const PROXY_PORT = 5000; // Port where proxy server will run
 
 // Create the proxy middleware
 const nextjsProxy = createProxyMiddleware({

@@ -1,57 +1,33 @@
 import React from "react";
-import useBuilder_io from "../customHook/useBuilder_io";
+import useContentStackApi from "../customHook/ContentStackApi"; // Adjust the path accordingly
+//import "../utils/css/home.css";
 
 const ImageGrid = () => {
-    const builderData = useBuilder_io();
+    // Fetch data using the custom hook
+    const contentData = useContentStackApi();
 
-    // Log the raw data fetched by useBuilder_io
-    console.log("Builder Data:", builderData);
+    // Filter out the image grid components from the fetched data
+    const imageGridComponents = contentData.filter(component => component.imagegrid);
 
-   
-    if (!builderData || !builderData.data || !builderData.data.imageGridObject) {
-        console.log("Loading or No Data Available");
+    if (!imageGridComponents || imageGridComponents.length === 0) {
         return <div>Loading...</div>; // or a loading spinner if you prefer
-    }
-
-    // Safely access image grid components using chaining methods
-    const imageGridComponents = builderData.data.imageGridObject
-        .flatMap(grid => {
-            console.log("Grid Object:", grid);
-            return grid.imageobject || [];
-        }) // Flatten the array and ensure imageobject is present
-        .filter(item => {
-            console.log("Image Object (before filter):", item);
-            return item.image; // Filter out items without an image
-        })
-        .map(item => {
-            const processedItem = {
-                src: item.image,
-                alt: item.alttext || '',
-                className: item.className || ''
-            };
-            console.log("Processed Image Item:", processedItem);
-            return processedItem;
-        });
-
-    // Log the final array of image components
-    console.log("Image Grid Components:", imageGridComponents);
-
-    if (imageGridComponents.length === 0) {
-        console.log("No images available");
-        return <div>No images available</div>; 
     }
 
     return (
         <div className="collage">
-            {imageGridComponents.map((item, index) => {
-                console.log(`Rendering Image ${index + 1}:`, item);
+            {imageGridComponents[0].imagegrid.imagegrid_images.map((item, index) => {
+                const image = item.imagegrid_image[0];
+                const altText = item.alttext_for_imagegrid_image;
+
                 return (
                     <img
                         key={index}
-                        src={item.src}
-                        alt={item.alt}
-                        className={`collage-image ${item.className}`} 
-                        
+                        src={image.secure_url}
+                        alt={altText}
+                       // width={image.width}
+                        //height={image.height}
+                        className="collage-image"
+                       // style={index === 3 ? { width: "66.6%" } : {}} // Adjust styling based on image position
                     />
                 );
             })}
