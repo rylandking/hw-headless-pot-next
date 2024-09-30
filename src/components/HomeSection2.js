@@ -7,8 +7,9 @@ export default function HomeSection2() {
 
     // Filter out the section component from the fetched data
     const sectionComponent = contentData.find(component => component.section);
+
     if (!sectionComponent) {
-       return <div>Loading...</div>; // or a loading spinner if you prefer
+        return <div>Loading...</div>; // or a loading spinner if you prefer
     }
 
     const { header, cta_buttons } = sectionComponent.section;
@@ -16,11 +17,15 @@ export default function HomeSection2() {
     return (
         <div className="homesection2">
             <div className="container">
+                <div className="header" dangerouslySetInnerHTML={{ __html: header }}></div>
                 <div className="footer">
-                        <a 
+                    {cta_buttons.map((button, index) => (
+                        <a
                             key={index} 
+                            href={button.button_link.href}
                             className="button-primary"
                         >
+                            {button.button_link.title}
                         </a>
                     ))}
                 </div>
