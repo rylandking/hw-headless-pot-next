@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Save from "../utils/icons/save.svg";
+//import '../utils/css/pdp.module.css';
 
 const Pdp = () => {
   const [activeTab, setActiveTab] = useState("Overview");

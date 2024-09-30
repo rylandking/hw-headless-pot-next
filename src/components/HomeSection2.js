@@ -20,9 +20,9 @@ export default function HomeSection2() {
                 <div className="header" dangerouslySetInnerHTML={{ __html: header }}></div>
                 <div className="footer">
                     {cta_buttons.map((button, index) => (
-                        <a
+                        <a 
                             key={index} 
-                            href={button.button_link.href}
+                            href={button.button_link.href} 
                             className="button-primary"
                         >
                             {button.button_link.title}

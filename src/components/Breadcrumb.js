@@ -13,7 +13,7 @@ const Breadcrumb = () => {
   
           <li className='breadcrumb-list'>
               <ul>
-              <Link href="/" className='homepage-link'><Image src={Home} alt="Homepage icon" className='home-icon'/></Link>
+              <Link href="/" type="text/css" rel="stylesheets" className='homepage-link'><Image src={Home} alt="Homepage icon" className='home-icon'/></Link>
               <Image src={CaratRight} alt="Right carat" className='carat-right'/>
               </ul>
               <ul>

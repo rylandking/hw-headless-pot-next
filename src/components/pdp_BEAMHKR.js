@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+//import '../utils/css/pdp.module.css';
 
 const Pdp_BEAMKHKR = () => {
   const [activeTab, setActiveTab] = useState("Overview");
