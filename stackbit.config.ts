@@ -12,6 +12,7 @@ export default defineStackbitConfig({
             managementToken: process.env.CONTENTSTACK_MANAGEMENT_TOKEN!,
             branch: process.env.CONTENTSTACK_BRANCH!,
             publishEnvironmentName: process.env.CONTENTSTACK_PUBLISH_ENV || 'production',
+            masterLocale: process.env.CONTENTSTACK_MASTER_LOCALE || 'en',
             skipFetchOnStartIfCache: true
         }),
         ],
