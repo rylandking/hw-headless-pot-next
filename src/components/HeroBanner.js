@@ -18,10 +18,10 @@ export default function HeroBanner() {
 
     return (
         <>
-            <div className="hero-image">
+            <div data-sb-object-id="blta135005fa8d23ccf" className="hero-image">
                 <img 
                     src={banner_image[0].secure_url} 
-                    alt="hero banner" 
+                    alt="hero banner" data-sb-field-path="title"
                    // style={{ width: "100%", height: "100%", objectFit: "cover" }}
                    //width={banner_image[0].width} 
                    //height={banner_image[0].height} 

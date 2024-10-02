@@ -8,10 +8,10 @@ export default defineStackbitConfig({
     "ssgName": "nextjs",
     "contentSources": [
         new ContentstackContentSource({
-            apiKey: process.env.CONTENTSTACK_API_KEY!,
-            managementToken: process.env.CONTENTSTACK_MANAGEMENT_TOKEN!,
-            branch: process.env.CONTENTSTACK_BRANCH!,
-            publishEnvironmentName: process.env.CONTENTSTACK_PUBLISH_ENV || 'production',
+            apiKey: "blt8cf7fa06f3654267",
+            managementToken: "cse021dd4c9a69c1da72f59ad6",
+            branch: "main",
+            publishEnvironmentName: process.env.CONTENTSTACK_PUBLISH_ENV || 'preview',
             masterLocale: process.env.CONTENTSTACK_MASTER_LOCALE || 'en',
             skipFetchOnStartIfCache: true
         }),
