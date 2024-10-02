@@ -19,7 +19,7 @@ const ImageBanner = () => {
   const imageUrl = imagebanner_image[0]?.secure_url || '';
 
   return (
-    <div className="ImageBanner" id="div-1">
+    <div className="ImageBanner" id="div-1" data-sb-object-id="blta135005fa8d23ccf">
       <div className="image-container" id="div-2">
         <div id="div-3">
           <div>
@@ -27,6 +27,7 @@ const ImageBanner = () => {
               src={imageUrl}
               alt={title}
               className="banner-image"
+              data-sb-field-path="components.3.imagebanner_image.0"
               //width={imageWidth}
               //height={imageHeight}
             />
@@ -35,13 +36,13 @@ const ImageBanner = () => {
       </div>
 
       <div className="text-container" id="div-4">
-        <h2 id="h2-1">{eyebrow}</h2>
-        <h2 id="h2-2">{title}</h2>
-        <div id="div-5">
+        <h2 id="h2-1" data-sb-field-path="components.3.eyebrow">{eyebrow}</h2>
+        <h2 id="h2-2" data-sb-field-path="components.3.title">{title}</h2>
+        <div id="div-5" data-sb-field-path="components.3.description">
           <p id="p-1" dangerouslySetInnerHTML={{ __html: description }}></p>
         </div>
-        <div className="cta">
-          <a href={reference_link.href} target="_blank" rel="noopener noreferrer">
+        <div className="cta"  >
+          <a href={reference_link.href} target="_blank" rel="noopener noreferrer" data-sb-field-path="components.3.reference_link.title">
             {reference_link.title}
           </a>
         </div>

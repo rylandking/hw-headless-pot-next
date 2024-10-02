@@ -15,15 +15,16 @@ export default function HomeSection2() {
     const { header, cta_buttons } = sectionComponent.section;
 
     return (
-        <div className="homesection2">
+        <div className="homesection2" data-sb-object-id="blta135005fa8d23ccf">
             <div className="container">
-                <div className="header" dangerouslySetInnerHTML={{ __html: header }}></div>
+                <div className="header" data-sb-field-path="components.1.header" dangerouslySetInnerHTML={{ __html: header }}></div>
                 <div className="footer">
                     {cta_buttons.map((button, index) => (
                         <a 
                             key={index} 
                             href={button.button_link.href} 
                             className="button-primary"
+                            data-sb-field-path="components.1.cta_buttons.0.button_link.title"
                         >
                             {button.button_link.title}
                         </a>

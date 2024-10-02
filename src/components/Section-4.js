@@ -14,7 +14,7 @@ const ImageGrid = () => {
     }
 
     return (
-        <div className="collage">
+        <div className="collage" data-sb-object-id="blta135005fa8d23ccf">
             {imageGridComponents[0].imagegrid.imagegrid_images.map((item, index) => {
                 const image = item.imagegrid_image[0];
                 const altText = item.alttext_for_imagegrid_image;
@@ -27,6 +27,7 @@ const ImageGrid = () => {
                        // width={image.width}
                         //height={image.height}
                         className="collage-image"
+                        data-sb-field-path="components.2.imagegrid_images.0.imagegrid_image.0"
                        // style={index === 3 ? { width: "66.6%" } : {}} // Adjust styling based on image position
                     />
                 );
