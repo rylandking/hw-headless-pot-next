@@ -4,84 +4,37 @@ import HomeSectionMui from "../components/HomeSectionMui";
 import ImageGrid from "../components/Section-4";
 import ImageBanner from "../components/Section-5";
 import useContentStackApi from "../customHook/ContentStackApi";
+import { getComponent } from "../components/index";
+import * as AnnotationsHelper from "../utils/contentstack/annotations";
 
-export default function Home() {
-
-  const data = useContentStackApi();
-  console.log("contenapidatahook", data);
-  if (!data) {
-    return <div>Loading...</div>; // Show a loading indicator while fetching data
-  }
-
+export default function Home({ landingPageData }) {
+  console.log('LANDING PAGE DATA', landingPageData);
 
   return (
     <>
-      <HeroBanner></HeroBanner>
-      <HomeSection2></HomeSection2>
-      <HomeSectionMui></HomeSectionMui>
-      <ImageGrid></ImageGrid>
-      <ImageBanner></ImageBanner>
-      
-    </>
-  );
-}
-  /*return (
-    <>
-      <HeroBanner></HeroBanner>
-      <HomeSection2></HomeSection2>
-      <HomeSectionMui></HomeSectionMui>
-      <ImageGrid></ImageGrid>
-      <ImageBanner></ImageBanner>
-    </>
-  );
-}
-  */
+      <div>
+        {landingPageData.components.map((component, index) => {
+          console.log('COMPONENT', component.type)
+          const SectionElement = getComponent(component);
 
-
-/*
-import React from "react";
-//import React from "react";
-
-import "../utils/css/home.css";
-import HeroBanner from "../components/HeroBanner";
-import HomeSection2 from "../components/HomeSection2";
-//import HomeSection3 from "../components/HomeSection3";
-import { useEffect,useState } from "react";
-import ApiList from "../AxiosApiList/ApiList";
-
-import HomeSectionMui from "../components/HomeSectionMui";
-
-import axios from "axios";
-import Token from "../utils/ApiList/Token";
-export default function Home() {
- 
-  console.log(Token,detailsApi)
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get( `${detailsApi}`,
-          {
-            headers: {
-              Authorization: Token,
-            },
+          if (!SectionElement) {
+            return null;
           }
-        );
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
-    fetchData();
-  }, []);
-  return (
-   <>
-   <h1>HeroBanner</h1>
-   <HeroBanner></HeroBanner>
-   <HomeSection2></HomeSection2>
-   <HomeSectionMui></HomeSectionMui>
-   </>
+          return (<SectionElement {...AnnotationsHelper.setFieldPath(`.components.${index}`)} key={`${component.type}-${index}`} {...component} />);
+        })}
+      </div>
+    </>
   );
 }
-
+/*return (
+  <>
+    <HeroBanner></HeroBanner>
+    <HomeSection2></HomeSection2>
+    <HomeSectionMui></HomeSectionMui>
+    <ImageGrid></ImageGrid>
+    <ImageBanner></ImageBanner>
+  </>
+);
+}
 */
