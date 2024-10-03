@@ -3,15 +3,22 @@ import HomeSection2 from "../components/HomeSection2";
 import HomeSectionMui from "../components/HomeSectionMui";
 import ImageGrid from "../components/Section-4";
 import ImageBanner from "../components/Section-5";
+<<<<<<< Updated upstream
 import useContentStackApi from "../customHook/ContentStackApi";
 
 export default function Home() {
 
   const data = useContentStackApi();
+=======
+export default function Home() {
+
+  //const data = useContentStackApi();
+ /* const data = useBuilder_io();
+>>>>>>> Stashed changes
   console.log("contenapidatahook", data);
   if (!data) {
     return <div>Loading...</div>; // Show a loading indicator while fetching data
-  }
+  }*/
 
 
   return (

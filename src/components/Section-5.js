@@ -1,5 +1,5 @@
 import React from 'react';
-import useContentStackApi from '../customHook/ContentStackApi'; // Adjust the path accordingly
+import useContentStackApi from '../customHook/useContentStackApi'; // Adjust the path accordingly
 //import '../utils/css/home.css';
 
 const ImageBanner = () => {

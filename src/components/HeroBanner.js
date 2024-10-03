@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 
 //import "../utils/css/home.css";
 import Image from 'next/image';
@@ -12,6 +13,30 @@ export default function HeroBanner() {
 
     if (!heroBannerData) {
         return null; // or a loading spinner if you prefer
+=======
+import useContentStackApi from '@/customHook/useContentStackApi';
+
+export default function HeroBanner() {
+
+    const contentData = useContentStackApi();
+    console.log("contentData", contentData);
+
+    
+    const bannerData= contentData[0]?.herobanner;
+    console.log("bannerData", bannerData);
+    const bannerImage = bannerData?.banner_image?.[0]?.url;
+  const bannerHeader = bannerData?.header;
+  const bannerText = bannerData?.banner_text;
+    console.log("bannerImage URL:", bannerImage);
+    console.log("bannerHeader:", bannerHeader);
+    console.log("bannerText:", bannerText);
+
+    
+    // Check if data is available
+    if (!bannerImage || !bannerHeader || !bannerText) {
+        console.error("HeroBanner data is missing:", bannerData);
+        return null;
+>>>>>>> Stashed changes
     }
 
     const { banner_image, header, banner_text } = heroBannerData.herobanner;
