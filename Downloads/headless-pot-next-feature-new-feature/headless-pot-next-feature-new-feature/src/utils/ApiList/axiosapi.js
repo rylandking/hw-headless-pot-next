@@ -1,5 +1,5 @@
 //const baseUrl = 'http://localhost:3000/api/proxy';
-const baseUrl = "";
+const baseUrl = "https://headless-pot-next-3prsunvj8-honeywell-poc-org.vercel.app";
 //const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || ''; // Default to an empty string if not set
 const contactApi = `${baseUrl}/api/proxy/pif/api/account/v1/get-contact-details?appId=239`;
 const detailsApi = `${baseUrl}/api/proxy/pif/api/session/details?appId=239`;
