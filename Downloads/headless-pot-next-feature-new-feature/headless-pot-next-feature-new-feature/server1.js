@@ -18,7 +18,7 @@ const parseCookies = (cookieString) => {
 
 // Configuration
 const NEXTJS_PORT = 3000; // Port where Next.js server is running
-const PROXY_PORT = 5000; // Port where proxy server will run
+const PROXY_PORT = 4000; // Port where proxy server will run
 
 // Create the proxy middleware
 const nextjsProxy = createProxyMiddleware({
@@ -88,7 +88,7 @@ const requestListener = async(req, res) => {
   // Get cookies from the headers
   const cookies = headers.cookie ? parseCookies(headers.cookie) : {};
   // Access specific cookies
-  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICI2MmI5YTYyMy0wOGU5LTQzYzktOGYyOC04M2I0NGU1ODY3YzkiLAogICJzdWIiIDogImIyNTcxODE4LTI0OTgtNDIzMS04ODQwLTM0NWU4NTM4Mzg1MiIsCiAgImlhdCIgOiAxNzIzODA1OTg1LAogICJleHAiIDogMTcyMzgwNzc4NQp9.KEr3R8cWex__MRs273I-Q0-uHd324JgT1_rwKq71XAY2b_ahLKaPA24mA3z2UH3x1of37NKQ_jem0YOxB016ucwLUFCJuQCSPSptuUK2Dtoe45oDCbHxctfWu-BV9k81RCBBQZ0-x0jGjCACTWfwWGv5LxPdUH_qNpIy4T13MEKHOLkTbtGWJZBu9Cd9l_9LI5-seNvsm3oih5ne3M0aQzaOpl_dRyOhTaxT86BUXCL2yddqS9QuDotk3-0OJmXcUatNFLlURhwYxz0gtFivLtLc-MWOSLJkSkVLDGRj5-_BIJQtZF_37r0WschnwSaQE1Ufw4oZ8fG7pcaqkINKuw";
+  const token = cookies["2391-token"] || "ewogICJ0eXAiIDogIkpXVCIsCiAgImFsZyIgOiAiUlMyNTYiCn0.ewogICJkb21haW4iIDogIjIzOTEiLAogICJhcHBJZCIgOiAiMjM5IiwKICAiaXNzIiA6ICJidWlsZGluZ3NidC5zdGFnZS5ob25leXdlbGwuY29tIiwKICAianRpIiA6ICI1MDM5ZGM0ZS00NWZkLTQyYjAtYjhkNy1iNThjODcxNzAxYzgiLAogICJzdWIiIDogIjU2NzdlYTc2LWY5YjYtNGIzMS05NGEzLTU5MDI0ZDU1ZDMyYiIsCiAgImlhdCIgOiAxNzI4MDM2NDY3LAogICJleHAiIDogMTcyODAzODI2Nwp9.hWyUUMTxAIW0WyEEgN-ggH6J7fULP5vg16aIQZnbbx5qI4p2ggxdbu9WmQZDzVrF4lYbm1RJ5PxA1mxH1IFQgbWST7GpzpL8L1BbZCYll6L_Xeu-AYugPv4E-3xAZVPekWLqZX_qOK53_DPqCO5gi6tuX89ByHmSi1amLPO-RC-uBy1BP5UFQf1KX6BNw63nzZkwpBLJCSh4R1_o5r6dHZ2nf9zYfayc2rP24D4zG0pZ7lbtSRT1suaachpB6UKbwiujguECOPOspSGWxUfPiPcr-ymJoo89xcl42Fe_yO1LLR6Pd3hIv7i980Kp3Xkw2BocdD1lQeHZSFCA4-MzSA";
 
   if (apiPath.includes("/pif/")) {
     if (method === 'OPTIONS') {

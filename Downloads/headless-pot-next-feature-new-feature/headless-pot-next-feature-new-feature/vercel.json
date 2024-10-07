@@ -1,0 +1,8 @@
+{
+    "routes": [
+      { "src": "/api/pif/(.*)", "dest": "/api/proxy" },
+      { "src": "/api/productDetails/(.*)", "dest": "/api/proxy" },
+      { "src": "/api/download/(.*)", "dest": "/api/proxy" }
+    ]
+  }
+  

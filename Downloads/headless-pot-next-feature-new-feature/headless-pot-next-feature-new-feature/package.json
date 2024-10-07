@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "next build && next dev",
+    "start": "node server1.js",
+    "lint": "next lint"
   },
   "dependencies": {
     "@builder.io/dev-tools": "^1.0.19",
