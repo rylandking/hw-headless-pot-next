@@ -25,6 +25,7 @@ export default defineStackbitConfig({
             modelsConfig: [
                 {
                     name: 'article',
+                    mainListField: 'content.children',
                     customPrompt:
                         'You are writing an article.',
                 },
@@ -40,6 +41,13 @@ export default defineStackbitConfig({
             name: 'article',
             type: 'page',
             urlPath: '{url}',
+            fields: [
+                {
+                    label: 'URL',
+                    name: 'url',
+                    type: 'slug'
+                },
+            ]
         }
     ],
 })
