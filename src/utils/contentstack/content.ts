@@ -1,5 +1,6 @@
 import Drafts from './contentstack.dev';
 import Published from './contentstack.prod';
+import * as ContentstackUtils from  'contentstack'  
 
 interface Link {
     title: string;
@@ -42,6 +43,16 @@ interface SiteSettings {
 
 const Contentstack = process.env.NODE_ENV !== 'production' ? Drafts : Published;
 
+export async function getArticleByUrl(url: string): Promise<any> {
+    const page = await Contentstack.getElementBySlug('article', url);
+
+    if (page) {
+        return convertPage(page);
+    }
+
+    return null;
+}
+
 export async function getSiteSettings(): Promise<SiteSettings> {
     const siteSettings = await Contentstack.getSingleElementByType('site_settings');
     const { header, footer } = siteSettings;
@@ -58,6 +69,51 @@ export async function getSiteSettings(): Promise<SiteSettings> {
             legalLinks: footer.legal_links,
             copyright: footer.copyright
         }
+    }
+}
+
+const renderOption = {
+    // to render Supercharged RTE NodeType content like paragraph, link, table, order list, un-order list and more.
+    p: (node, next) => {
+      return `<p class='class-id'>${next(node.children)}</p>`
+    },
+    h1: (node, next) => {
+      return `<h1 class='class-id'>${next(node.children)}</h1>`
+    },
+    // to render Supercharged RTE MarkType content like bold, italic, underline, strikethrough, inlineCode, subscript, and superscript
+    bold: (text) => {
+      return `<b>${text}</b>`
+    },
+    // to render block-type embedded items
+    block: {
+      product: (entry, metadata) => {
+        return `<div>
+          <h2 >${entry.title}</h2>
+          <img src=${entry.product_image.url} alt=${entry.product_image.title}/>
+          <p>${entry.price}</p>
+        </div>`
+      },
+      // to render the default
+      $default: (entry, metadata) => {
+        return `<div>
+                   <h2>${entry.title}</h2>
+                   <p>${entry.description}</p>  
+               </div>`
+      }
+    },
+    // to display inline embedded items
+    inline: {
+      $default: (entry) => {
+        return `<span><b>${entry.title}</b> - ${entry.description}</span>`
+      }
+    },
+    // to display embedded items inserted via link
+    link: (entry, metadata) => {
+      return `<a href="${metadata.attributes.href}">${metadata.text}</a>`
+    },
+    // to display assets
+     display: (asset, metadata) => {
+      return `<img src=${asset.url || metadata.attributes.src || metadata.attributes['asset-link']} alt=${metadata.alt}/>`
     }
 }
 
@@ -105,7 +161,8 @@ function convertPage(page: any) {
     return {
         _id: page.uid,
         title: page.title,
-        components: page.components.map((section: any) => {
+        content: page.content,
+        components: page.components?.map((section: any) => {
             const type = Object.keys(section)[0];
             return convertSection({
                 type,

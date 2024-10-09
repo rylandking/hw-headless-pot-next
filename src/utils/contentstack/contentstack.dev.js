@@ -45,12 +45,12 @@ export default {
         // return entry;
     },
 
-    getElementBySlug(type, slug) {
+    getElementBySlug(type, url) {
         return Stack
             .contentType(type)
             .entry()
             .query({
-                query: { slug },
+                query: { url },
                 include_publish_details: true,
             })
             .find()

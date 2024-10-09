@@ -22,10 +22,10 @@ export default {
             .fetch();
     },
 
-    getElementBySlug(type, slug) {
+    getElementBySlug(type, url) {
         return Stack.ContentType(type)
             .Query()
-            .where('slug', { '$eq': slug })
+            .where('url', { '$eq': url })
             .toJSON()
             .find()
             .then((result) => {

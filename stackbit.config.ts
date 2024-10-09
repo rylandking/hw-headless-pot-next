@@ -1,4 +1,6 @@
 import { ContentstackContentSource } from '@stackbit/cms-contentstack';
+import { Actions } from '@stackbit/utils'
+
 
 import { defineStackbitConfig } from '@stackbit/types';
 
@@ -16,11 +18,28 @@ export default defineStackbitConfig({
             skipFetchOnStartIfCache: true
         }),
     ],
-    postInstallCommand: "npm i --no-save @stackbit/types @stackbit/cms-contentstack",
+    actions: [
+        Actions.GenerateContentFromPreset({
+            label: 'Generate content with AI',
+            siteId: process.env.SITE_ID,
+            modelsConfig: [
+                {
+                    name: 'article',
+                    customPrompt:
+                        'You are writing an article.',
+                },
+            ],
+        }),
+    ],
     modelExtensions: [
         {
             name: 'article_listing_page',
             type: 'page',
+        },
+        {
+            name: 'article',
+            type: 'page',
+            urlPath: '{url}',
         }
     ],
 })
