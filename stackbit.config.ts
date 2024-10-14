@@ -2,7 +2,8 @@ import { ContentstackContentSource } from '@stackbit/cms-contentstack';
 import { Actions } from '@stackbit/utils'
 
 
-import { defineStackbitConfig } from '@stackbit/types';
+import { defineStackbitConfig, DocumentStringLikeFieldNonLocalized } from '@stackbit/types';
+import { Actions } from '@stackbit/utils';
 
 export default defineStackbitConfig({
     stackbitVersion: "~0.6.0",
@@ -50,4 +51,25 @@ export default defineStackbitConfig({
             ]
         }
     ],
+    actions: [
+        Actions.GenerateContentFromPreset({
+            label: 'Generate content with AI',
+            modelsConfig: [
+                {
+                    name: 'landing_page',
+                },
+            ],
+        }),
+    ],
+    sitemap: (options) => {
+        const pageModels = ['article_listing_page', 'landing_page', 'pot_landing_page'];
+        return options.documents.filter((document) => pageModels.includes(document.modelName)).map((document) => {
+            const slug = (document.fields.url as DocumentStringLikeFieldNonLocalized)?.value ?? '/';
+            const urlPath = slug === 'home' ? '/' : slug;
+            return {
+                urlPath: urlPath,
+                document: document
+            }
+        })
+    }
 })

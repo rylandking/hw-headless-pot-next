@@ -15,7 +15,7 @@ import Layout from './Layout.js';
 
 function MyApp({ Component, pageProps }) {
     return (
-        <Layout detailData={pageProps.detailData} contactData={pageProps.contactData} error={pageProps.error}>
+        <Layout detailData={pageProps.detailData} contactData={pageProps.contactData} error={pageProps.error} suppressHydrationWarning>
             <Component {...pageProps} />
         </Layout>
     );

@@ -5,7 +5,7 @@ import useContentStackApi from '../customHook/ContentStackApi'; // Adjust the pa
 const ImageBanner = () => {
   // Fetch data using the custom hook
   const contentData = useContentStackApi();
-  
+
   // Check if contentData is available and has imagebanner
   const imageBanner = contentData?.find((item) => item.imagebanner);
 
@@ -15,7 +15,7 @@ const ImageBanner = () => {
   }
 
   // Destructure necessary data from imageBanner
-  const { title, imagebanner_image, eyebrow, description, reference_link,imageWidth,imageHeight } = imageBanner.imagebanner;
+  const { title, imagebanner_image, eyebrow, description, reference_link, imageWidth, imageHeight } = imageBanner.imagebanner;
   const imageUrl = imagebanner_image[0]?.secure_url || '';
 
   return (
@@ -28,8 +28,8 @@ const ImageBanner = () => {
               alt={title}
               className="banner-image"
               data-sb-field-path="components.3.imagebanner_image.0"
-              //width={imageWidth}
-              //height={imageHeight}
+            //width={imageWidth}
+            //height={imageHeight}
             />
           </div>
         </div>
