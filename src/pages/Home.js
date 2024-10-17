@@ -1,31 +1,35 @@
 import HeroBanner from "../components/HeroBanner";
 import HomeSection2 from "../components/HomeSection2";
-import HomeSectionMui from "../components/HomeSectionMui";
 import ImageGrid from "../components/Section-4";
 import ImageBanner from "../components/Section-5";
 import useContentStackApi from "../customHook/ContentStackApi";
 
 export default function Home() {
-
   const data = useContentStackApi();
   console.log("contenapidatahook", data);
   if (!data) {
     return <div>Loading...</div>; // Show a loading indicator while fetching data
   }
 
+  const componentMap = {
+    herobanner: HeroBanner,
+    section: HomeSection2,
+    imagegrid: ImageGrid,
+    imagebanner: ImageBanner,
+  };
 
   return (
-    <>
-      <HeroBanner></HeroBanner>
-      <HomeSection2></HomeSection2>
-      <HomeSectionMui></HomeSectionMui>
-      <ImageGrid></ImageGrid>
-      <ImageBanner></ImageBanner>
-      
-    </>
+    <div data-sb-object-id="blta135005fa8d23ccf">
+      {data?.map((section, idx) => {
+        const type = Object.keys(section)[0];
+        const Component = componentMap[type];
+        console.log("Component", Component);
+        return <Component key={idx} fieldPath={`components.${idx}`} />;
+      })}
+    </div>
   );
 }
-  /*return (
+/*return (
     <>
       <HeroBanner></HeroBanner>
       <HomeSection2></HomeSection2>
@@ -36,7 +40,6 @@ export default function Home() {
   );
 }
   */
-
 
 /*
 import React from "react";
