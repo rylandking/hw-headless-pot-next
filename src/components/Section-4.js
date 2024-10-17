@@ -5,9 +5,19 @@ import useContentStackApi from "../customHook/ContentStackApi"; // Adjust the pa
 //import "../utils/css/home.css";
 
 const ImageGrid = (props) => {
+    // Fetch data using the custom hook
+    const contentData = useContentStackApi();
+
+    // Filter out the image grid components from the fetched data
+    const imageGridComponents = contentData.filter(component => component.imagegrid);
+
+    if (!imageGridComponents || imageGridComponents.length === 0) {
+        return <div>Loading...</div>; // or a loading spinner if you prefer
+    }
+
     return (
-        <div className="collage" {...props}>
-            {props.imagegrid_images.map((item, index) => {
+        <div className="collage" data-sb-field-path={props.fieldPath}>
+            {imageGridComponents[0].imagegrid.imagegrid_images.map((item, index) => {
                 const image = item.imagegrid_image[0];
                 console.log(image);
                 const altText = item.alttext_for_imagegrid_image;
@@ -19,7 +29,8 @@ const ImageGrid = (props) => {
                         src={image.secure_url}
                         alt={altText}
                         className="collage-image"
-                        {...AnnotationsHelper.setFieldPath(`.imagegrid_images.${index}.imagegrid_image.0`)}
+                        data-sb-field-path=".imagegrid_images.0.imagegrid_image.0"
+                       // style={index === 3 ? { width: "66.6%" } : {}} // Adjust styling based on image position
                     />
                 );
             })}
