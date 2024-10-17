@@ -18,6 +18,7 @@ export default function Home() {
     imagebanner: ImageBanner,
   };
 
+export default function Home({ landingPageData }) {
   return (
     <div data-sb-object-id="blta135005fa8d23ccf">
       {data?.map((section, idx) => {
@@ -52,38 +53,14 @@ import HomeSection2 from "../components/HomeSection2";
 import { useEffect,useState } from "react";
 import ApiList from "../AxiosApiList/ApiList";
 
-import HomeSectionMui from "../components/HomeSectionMui";
-
-import axios from "axios";
-import Token from "../utils/ApiList/Token";
-export default function Home() {
- 
-  console.log(Token,detailsApi)
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get( `${detailsApi}`,
-          {
-            headers: {
-              Authorization: Token,
-            },
+          if (!SectionElement) {
+            return null;
           }
-        );
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
-    fetchData();
-  }, []);
-  return (
-   <>
-   <h1>HeroBanner</h1>
-   <HeroBanner></HeroBanner>
-   <HomeSection2></HomeSection2>
-   <HomeSectionMui></HomeSectionMui>
-   </>
+          return (<SectionElement {...AnnotationsHelper.setFieldPath(`.components.${index}`)} key={`${component.type}-${index}`} {...component} suppressHydrationWarning />);
+        })}
+      </div>
+    </>
   );
 }
 

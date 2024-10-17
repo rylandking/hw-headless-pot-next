@@ -14,19 +14,20 @@ export default function HomeSection2(props) {
 
     const { header, cta_buttons } = sectionComponent.section;
 
+export default function HomeSection2(props) {
     return (
         <div className="homesection2" data-sb-field-path={props.fieldPath}>
             <div className="container">
                 <div className="header" data-sb-field-path=".header" dangerouslySetInnerHTML={{ __html: header }}></div>
                 <div className="footer">
-                    {cta_buttons.map((button, index) => (
-                        <a 
-                            key={index} 
-                            href={button.button_link.href} 
+                    {props.cta_buttons.map((button, index) => (
+                        <a
+                            key={index}
+                            href={button.button_link.href}
                             className="button-primary"
                             data-sb-field-path=".cta_buttons.0.button_link.title"
                         >
-                            {button.button_link.title}
+                            <span {...AnnotationsHelper.setFieldPath('.button_link.title')}>{button.button_link.title}</span>
                         </a>
                     ))}
                 </div>
@@ -34,28 +35,3 @@ export default function HomeSection2(props) {
         </div>
     );
 }
-
-/*
-
-
-export default function HomeSection2() {
-    return (
-        <div className="homesection2">
-            <div className="container">
-            <div className="header">
-           <h3>Healthier buildings mean more confident occupants</h3>
-            <h5>Now’s the time to start making your building healthier. 
-                Draw on our building control expertise to address the key concerns—air quality,
-                 touchless systems and social distance monitoring. We’ll make a healthy building operational faster than you thought possible.</h5>
-           </div>
-            <div className="footer">
-                <button className="button-primary">SPEAK TO AN EXPERT</button>
-                <button className="button-primary">SEE HEALTHY BUILDINGS</button>
-                <button className="button-primary">VIEW ALL PRODUCTS</button>
-            </div>
-            </div>
-           
-        </div>
-    );
-}
-    */

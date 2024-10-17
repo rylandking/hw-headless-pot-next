@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 
 //import "../utils/css/home.css";
 import Image from 'next/image';
@@ -16,6 +17,7 @@ export default function HeroBanner(props) {
 
     const { banner_image, header, banner_text } = heroBannerData.herobanner;
 
+export default function HeroBanner(props) {
     return (
         <>
             <div className="hero-image" data-sb-field-path={props.fieldPath}>
@@ -32,30 +34,6 @@ export default function HeroBanner(props) {
                     <p className="text-white para" data-sb-field-path=".banner_text" dangerouslySetInnerHTML={{ __html: banner_text }} />
                 </div>
             </div>
-        </>
+        </div>
     );
 }
-/*export default function HeroBanner() {
-    return (
-       
-        <>
-        <div className="hero-image">
-  <img src="https://honeywell.scene7.com/is/image/honeywell/street-view-buildings-2880x1440:5-2-hero" alt="Photographer" style={{"width":"100%", "height":"100%", "object-fit":"cover"}}/>
-  <div className="bannertext">
-           <h1 className="header1">
-              <span className="text-red">A SAFER</span>
-              <span className="text-red">MORE</span>
-              <span className="text-red">CONFIDENT</span>
-              <span className="text-white">WELCOME BACK.</span>
-           </h1>
-           <p className="text-white para">
-              As we go back to work, back to travel and even back to play, let's
-              also go forward. To embrace new opportunities. Together.
-            </p>
-           </div>
-</div>
-        </>
-    );
-}
-
-*/
